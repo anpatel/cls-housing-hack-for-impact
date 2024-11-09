@@ -32,7 +32,7 @@ def pdf_to_text(pdf_path, output_txt_path):
 
 if __name__ == "__main__":
     # Example usage
-    pdf_path = "path/to/your/pdf/file.pdf"
+    pdf_path = "Data/2023-01-23 Rent Boards Finding and Decisions Appeal Case 2021056 - 2070 Glen Way Apartment F (1).pdf"
     output_txt_path = "path/to/output/text/file.txt"
 
     success = pdf_to_text(pdf_path, output_txt_path)
