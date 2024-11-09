@@ -1,25 +1,44 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState, useEffect } from "react";
 
-function App() {
+// ... existing imports ...
+
+export default function App() {
+  const [data, setData] = useState(null);
+  console.log(
+    "process.env.REACT_APP_BACKEND_DOMAIN",
+    process.env.REACT_APP_BACKEND_DOMAIN
+  );
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch(
+          `${process.env.REACT_APP_BACKEND_DOMAIN}/api/data`
+        );
+        const jsonData = await response.json();
+        setData(jsonData);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        {/* ... existing header content ... */}
+
+        {/* Add this section to display the data */}
+        <div>
+          {data ? (
+            <pre>{JSON.stringify(data, null, 2)}</pre>
+          ) : (
+            <p>Loading data...</p>
+          )}
+        </div>
       </header>
     </div>
   );
 }
-
-export default App;
