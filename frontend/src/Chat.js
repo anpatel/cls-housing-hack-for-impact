@@ -1,3 +1,4 @@
+import "./App.css";
 import { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import {
@@ -12,6 +13,7 @@ import {
   InputRightElement,
   Icon,
 } from "@chakra-ui/react";
+import ReactMarkdown from "react-markdown";
 import { SearchIcon } from "@chakra-ui/icons";
 import { FaRobot } from "react-icons/fa";
 
@@ -53,7 +55,27 @@ export default function Chat() {
 
     // Add mock AI response immediately
     const aiMessage = {
-      text: "Based on similar cases, pursuing a rent reduction or rebate has a high likelihood of success if sufficient evidence of ongoing pest issues can be presented.",
+      text: `# Strength of Case
+Based on similar cases, pursuing a rent reduction or rebate has a high likelihood of success if sufficient evidence of ongoing pest issues can be presented.
+
+## Recommended Actions
+
+### Gather More Evidence
+- Document future pest sightings with photos
+- Record videos of infestations  
+- Keep a detailed log with specific dates and locations
+
+### Consider Additional Complaints
+- Monitor for mold development
+- Document any structural issues
+- Report maintenance problems
+- Track response times from property management
+
+## Legal Reference
+### California Civil Code Section 1941.1
+- Reinforces tenant's right to habitable living environment
+- Specifically addresses pest infestations
+- Provides basis for rent reduction claims`,
       sender: "ai",
       timestamp: new Date().toISOString(),
       caseInfo: [
@@ -255,9 +277,9 @@ export default function Chat() {
                       borderRadius="full"
                       color="#1E1E1E"
                     >
-                      <Text fontSize="16px" fontWeight="400" lineHeight="100%">
-                        {message?.text}
-                      </Text>
+                      <ReactMarkdown className="markdown-content">
+                        {message.text}
+                      </ReactMarkdown>
                     </Box>
                   )}
                 </Flex>
