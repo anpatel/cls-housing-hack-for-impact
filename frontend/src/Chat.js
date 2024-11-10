@@ -218,6 +218,29 @@ export default function Chat() {
                             {caseItem.legalBasis}
                           </Text>
                         </Text>
+                        <Box
+                          display="flex"
+                          padding="8px"
+                          justifyContent="center"
+                          alignItems="center"
+                          gap="8px"
+                          borderRadius="8px"
+                          border="1px solid #767676"
+                          background="#E3E3E3"
+                          width="123px"
+                          mt="12px"
+                        >
+                          <Text
+                            color="#1E1E1E"
+                            fontSize="11px"
+                            fontStyle="normal"
+                            fontWeight={500}
+                            lineHeight="16px"
+                            letterSpacing="0.5px"
+                          >
+                            View Full Summary
+                          </Text>
+                        </Box>
                       </Box>
                     </Box>
                   ))}
