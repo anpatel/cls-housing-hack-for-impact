@@ -7,7 +7,6 @@ import {
   Text,
   Input,
   InputGroup,
-  Button,
   Flex,
   Container,
   InputRightElement,
@@ -73,7 +72,7 @@ export default function Chat() {
       .then((response) => response.json())
       .then((data) => {
         console.log("Query response:", data);
-        const aiResponse = data?.response;
+        const aiResponse = data?.response.response;
         // Add mock AI response immediately
         const aiMessage = {
           text: aiResponse,
@@ -295,7 +294,7 @@ export default function Chat() {
                           </Text>
                           <Box
                             as="a" // Change Box to be an anchor
-                            href="Data/input/Mountain_View/California_1556 2023.11.21 HODecision_Redacted.pdf"
+                            href="2023-01-23 Rent Boards Finding and Decisions Appeal Case 2021056 - 2070 Glen Way Apartment F.pdf"
                             target="_blank"
                             display="flex"
                             padding="8px"
