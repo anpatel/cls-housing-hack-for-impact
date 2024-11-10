@@ -1,0 +1,71 @@
+# 939 Rich Ave - Petición RHC #C22230050 and C22230051
+
+# Anexo 1
+
+# Calendario de pagos
+
+# Decisión del Oficial de Audiencia sobre la renta ilegal (continuación)
+
+# Servicios
+
+|Mes/año de pago de la renta|Renta real pagada por la vivienda|Servicios públicos reales pagados|Adicionales reales pagados|Renta legal del demandante|Pagos en exceso|
+|---|---|---|---|---|---|
+|2/2023|$ 1,917.00|$ -|$ -|$ 1,700.00|$ 217.00|
+|3/2023|$ 1,917.00|$ -|$ -|$ 1,700.00|$ 217.00|
+|4/2023|$ 1,917.00|$ -|$ -|$ 1,700.00|$ 217.00|
+|5/2023|$ 1,917.00|$ -|$ -|$ 1,700.00|$ 217.00|
+|6/2023|$ 1,917.00|$ -|$ -|$ 1,700.00|$ 217.00|
+|7/2023|$ 1,917.00|$ -|$ -|$ 1,700.00|$ 217.00|
+|8/2023|$ 1,917.00|$ -|$ -|$ 1,700.00|$ 217.00|
+|9/2023|$ 1,917.00|$ -|$ -|$ 1,700.00|$ 217.00|
+|10/2023|$ 1,917.00|$ -|$ -|$ 1,700.00|$ 217.00|
+|11/2023|$ 1,917.00|$ -|$ -|$ 1,700.00|$ 217.00|
+|12/2023|$ 1,917.00|$ -|$ -|$ 1,700.00|$ 217.00|
+|1/2024|$ 1,917.00|$ -|$ -|$ 1,700.00|$ 217.00|
+|TOTAL|$ 17,547.67|$ 17,547.67|$ 17,547.67|$ 17,547.67|$ 17,547.67|
+
+# Decisión del Oficial de Audiencia sobre la falta de mantenimiento de vivienda habitable y la reducción de los servicios de vivienda o mantenimiento
+
+# Problemas de habitabilidad / reducción de los servicios de vivienda
+
+|Mes/año de inicio del problema|Mes/año de resolución del problema|Número de días de persistencia|Renta mensual|Porcentaje de reducción de renta concedida|Reducción total de renta|
+|---|---|---|---|---|---|
+|12/1/2022|1/31/2024|14.0|$ 1,700.00|$ 425.00|$ 5,950.00|
+|9/1/2022|1/31/2024|17.0|$ 1,700.00|$ 50.00|$ 850.00|
+|11/1/2021|10/4/2023|23.1|$ 1,700.00|$ -|$ -|
+|11/30/2022|5/26/2023|5.9|$ 1,700.00|$ -|$ -|
+|1/1/2024|en curso|Por determinar|$ 1,225.00|Por determinar|Por determinar|
+|1/1/2024|en curso|Por determinar|$ 1,225.00|Por determinar|Por determinar|
+|TOTAL|$ 6,800.00|$ 6,800.00|$ 6,800.00|$ 6,800.00|$ 6,800.00|
+
+# REEMBOLSO TOTAL DEBIDO AL PETICIONARIO:
+
+$ 24,347.67
+
+# Calendario de créditos
+
+|Mes/año de pago de la renta|Renta no pagada que se le debe al propietario|Renta abonada al demandante*|Pago total a cargo del demandante|
+|---|---|---|---|
+|4/2024|$ 1,225.00|$ 1,225.00|$ -|
+|5/2024|$ 1,225.00|$ 1,225.00|$ -|
+|6/2024|$ 1,225.00|$ 1,225.00|$ -|
+|7/2024|$ 1,225.00|$ 1,225.00|$ -|
+|8/2024|$ 1,225.00|$ 1,225.00|$ -|
+|9/2024|$ 1,225.00|$ 1,225.00|$ -|
+|10/2024|$ 1,225.00|$ 1,225.00|$ -|
+|11/2024|$ 1,225.00|$ 1,225.00|$ -|
+|12/2024|$ 1,225.00|$ 1,225.00|$ -|
+|1/2025|$ 1,225.00|$ 1,225.00|$ -|
+|2/2025|$ 1,225.00|$ 1,225.00|$ -|
+|3/2025|$ 1,225.00|$ 1,225.00|$ -|
+|4/2025|$ 1,225.00|$ 1,225.00|$ -|
+|5/2025|$ 1,225.00|$ 1,225.00|$ -|
+|6/2025|$ 1,225.00|$ 1,225.00|$ -|
+|7/2025|$ 1,225.00|$ 1,225.00|$ -|
+|8/2025|$ 1,225.00|$ 1,225.00|$ -|
+|9/2025|$ 1,225.00|$ 1,225.00|$ -|
+|10/2025|$ 1,225.00|$ 1,225.00|$ -|
+|11/2025|$ 1,225.00|$ 1,072.67|$ 152.33|
+|TOTAL|$ 24,347.67|$ 24,347.67| |
+
+* La tasa de renta legal reducida de 1,225.00 dólares sigue siendo válida hasta que se repare la fuga en el dormitorio o se restablezcan los servicios de mantenimiento/jardinería, y se aumentará de conformidad con los apartados 19 a 21 de la página 27 de la decisión escrita.

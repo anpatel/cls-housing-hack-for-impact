@@ -1,0 +1,9 @@
+# Resident Petition B:
+
+# Failure to Maintain Habitable Premises, or Reduction or Elimination of Communal Facilities, Housing Services or Maintenance Worksheet 3
+
+# Decrease in Housing Services or Maintenance
+
+|Describe Each Condition|Is condition resolved?|Date Condition Started|Date Condition Resolved (or Date Owner Notified of unresolved)|Estimated Decrease in Condition (at least 30 days before petition filed)|Number of Months Condition Present|Total Estimated Decrease per Condition|
+|---|---|---|---|---|---|---|
+|Laundry room closed|Not|6/27/2021|11/1/2021 (Petition filing date)|150.00|4|600.00|

@@ -1,0 +1,28 @@
+# Attachment 1
+
+# Award Schedule
+
+1260 Montecito Ave # - RHC Petition# C22230030
+
+# Hearing Officer Decision
+
+# Rent Reduction
+
+|Habitability/Housing Service Reduction Issue|Month/Year Issue Began|Month/Year Issue Resolved|Percentage Reduction of Rent|Number of Days of Condition Persisted|Per Diem Rate (including % reduction)|Condition|
+|---|---|---|---|---|---|---|
+|Presence of mold in garage*|12/12/2022|2/28/2023|20%|50.0|$20.69|$1,034.50|
+|Intrusion of water in living room**|12/12/2022|2/28/2023|5%|50.0|$5.17|$258.50|
+|Floor caved in|12/12/2022|2/28/2023|0%|50.0|-|-|
+|TOTAL|TOTAL|TOTAL|TOTAL|TOTAL|TOTAL|$1,293.00|
+
+# Refund Schedule
+
+|Deadline|Total Due to Petitioner|
+|---|---|
+|August 1, 2023|$1,293.00|
+
+TOTAL: $1,293.00
+
+* Calculation: $3,104 * 20% = $620.80 / 30 days = $20.69 per diem rate * 50 days = $1,034.67
+
+** Calculation: $3,104 * 5% = $155.20 / 30 days = $5.17 per diem rate * 50 days = $258.50

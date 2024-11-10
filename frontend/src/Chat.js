@@ -27,42 +27,10 @@ export default function Chat() {
   // Add useEffect to initialize chat with search query
   useEffect(() => {
     const initialQuery = location.state?.query;
-    const initialAiResponse = location.state?.initialAiResponse;
     const initialMessage = {
       text: initialQuery,
       sender: "user",
       timestamp: new Date().toISOString(),
-    };
-
-    const aiMessage = {
-      text: initialAiResponse,
-      sender: "ai",
-      timestamp: new Date().toISOString(),
-      caseInfo: [
-        {
-          caseNumber:
-            "Case #2023-054: Rosalene Nee vs. Woodland Park Communities",
-          summary:
-            "Rent reduction of 7.5% granted due to repeated roach infestations. Noise complaints were denied.",
-          outcome: "✅ Rent reduction granted | ❌ Noise complaint dismissed",
-          legalBasis:
-            "California Civil Code Section 1941.1 (Warranty of Habitability)",
-        },
-        {
-          caseNumber: "Case #2022-032: John Lee vs. Westfield Properties",
-          summary:
-            "Successful rebate for vermin infestation affecting tenant's health and property use.",
-          outcome: "✅ Rebate granted",
-          legalBasis: "Local Habitability Standards, Pest Control Requirement",
-        },
-        {
-          caseNumber: "Case #2021-078: Emily Wang vs. Summit Heights LLC",
-          summary:
-            "Case dismissed; tenant failed to provide sufficient evidence of ongoing pest issues.",
-          outcome: "❌ Complaint dismissed",
-          legalBasis: "Lack of corroborating evidence for pest complaints",
-        },
-      ],
     };
 
     if (initialQuery) {
@@ -71,7 +39,7 @@ export default function Chat() {
         sender: "user",
         timestamp: new Date().toISOString(),
       };
-      setMessages([initialMessage, aiMessage]);
+      setMessages([initialMessage]);
       // Trigger AI response for initial query
       handleSendMessage(initialQuery);
     }
@@ -91,70 +59,79 @@ export default function Chat() {
       setInputMessage("");
     }
 
-    // Add mock AI response immediately
-    const aiMessage = {
-      text: `# Strength of Case
-Based on similar cases, pursuing a rent reduction or rebate has a high likelihood of success if sufficient evidence of ongoing pest issues can be presented.
+    fetch(`${process.env.REACT_APP_BACKEND_DOMAIN}/api/query`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        question: messageText,
+      }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log("Query response:", data);
+        const aiResponse = data?.response;
+        // Add mock AI response immediately
+        const aiMessage = {
+          text: aiResponse,
+          //       text: `# Strength of Case
+          // Based on similar cases, pursuing a rent reduction or rebate has a high likelihood of success if sufficient evidence of ongoing pest issues can be presented.
 
-## Recommended Actions
+          // ## Recommended Actions
 
-### Gather More Evidence
-- Document future pest sightings with photos
-- Record videos of infestations  
-- Keep a detailed log with specific dates and locations
+          // ### Gather More Evidence
+          // - Document future pest sightings with photos
+          // - Record videos of infestations
+          // - Keep a detailed log with specific dates and locations
 
-### Consider Additional Complaints
-- Monitor for mold development
-- Document any structural issues
-- Report maintenance problems
-- Track response times from property management
+          // ### Consider Additional Complaints
+          // - Monitor for mold development
+          // - Document any structural issues
+          // - Report maintenance problems
+          // - Track response times from property management
 
-## Legal Reference
-### California Civil Code Section 1941.1
-- Reinforces tenant's right to habitable living environment
-- Specifically addresses pest infestations
-- Provides basis for rent reduction claims`,
-      sender: "ai",
-      timestamp: new Date().toISOString(),
-      caseInfo: [
-        {
-          caseNumber:
-            "Case #2023-054: Rosalene Nee vs. Woodland Park Communities",
-          summary:
-            "Rent reduction of 7.5% granted due to repeated roach infestations. Noise complaints were denied.",
-          outcome: "✅ Rent reduction granted | ❌ Noise complaint dismissed",
-          legalBasis:
-            "California Civil Code Section 1941.1 (Warranty of Habitability)",
-        },
-        {
-          caseNumber: "Case #2022-032: John Lee vs. Westfield Properties",
-          summary:
-            "Successful rebate for vermin infestation affecting tenant's health and property use.",
-          outcome: "✅ Rebate granted",
-          legalBasis: "Local Habitability Standards, Pest Control Requirement",
-        },
-        {
-          caseNumber: "Case #2021-078: Emily Wang vs. Summit Heights LLC",
-          summary:
-            "Case dismissed; tenant failed to provide sufficient evidence of ongoing pest issues.",
-          outcome: "❌ Complaint dismissed",
-          legalBasis: "Lack of corroborating evidence for pest complaints",
-        },
-      ],
-    };
-    setMessages((prevMessages) => [...prevMessages, aiMessage]);
+          // ## Legal Reference
+          // ### California Civil Code Section 1941.1
+          // - Reinforces tenant's right to habitable living environment
+          // - Specifically addresses pest infestations
+          // - Provides basis for rent reduction claims`,
+          sender: "ai",
+          timestamp: new Date().toISOString(),
+          caseInfo: [
+            {
+              caseNumber:
+                "Case #2023-054: Rosalene Nee vs. Woodland Park Communities",
+              summary:
+                "Rent reduction of 7.5% granted due to repeated roach infestations. Noise complaints were denied.",
+              outcome:
+                "✅ Rent reduction granted | ❌ Noise complaint dismissed",
+              legalBasis:
+                "California Civil Code Section 1941.1 (Warranty of Habitability)",
+            },
+            {
+              caseNumber: "Case #2022-032: John Lee vs. Westfield Properties",
+              summary:
+                "Successful rebate for vermin infestation affecting tenant's health and property use.",
+              outcome: "✅ Rebate granted",
+              legalBasis:
+                "Local Habitability Standards, Pest Control Requirement",
+            },
+            {
+              caseNumber: "Case #2021-078: Emily Wang vs. Summit Heights LLC",
+              summary:
+                "Case dismissed; tenant failed to provide sufficient evidence of ongoing pest issues.",
+              outcome: "❌ Complaint dismissed",
+              legalBasis: "Lack of corroborating evidence for pest complaints",
+            },
+          ],
+        };
+        setMessages((prevMessages) => [...prevMessages, aiMessage]);
+      })
 
-    try {
-      await fetch(`${process.env.REACT_APP_BACKEND_DOMAIN}/api/chat`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ message: inputMessage }),
+      .catch((error) => {
+        console.error("Error querying:", error);
       });
-    } catch (error) {
-      console.error("Error sending message:", error);
-    }
   };
 
   return (

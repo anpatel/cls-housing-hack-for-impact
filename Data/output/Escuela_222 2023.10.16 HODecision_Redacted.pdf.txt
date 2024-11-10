@@ -1,0 +1,21 @@
+# Attachment 2
+
+# Award Schedule
+
+222 Escuela Ave RHC Petition# C22230052
+
+# Hearing Officer Decision
+
+|Habitability Issue|Issue Began|Issue Resolved|Days Persisted|Lawful Monthly Rent|Rent Reduction Awarded|
+|---|---|---|---|---|---|
+|Mold in bedroom|1/3/2023|7/17/2023|180.0|2,938.00|40%|
+|TOTAL|TOTAL|TOTAL|TOTAL|TOTAL|7,050.60|
+
+# Credit Schedule
+
+|Month/Year of Rent Payment|Monthly Rent Owed by Petitioner|Rent Credited to Petitioner|Total Rent Owed to Landlord|
+|---|---|---|---|
+|10/2023|2,938.00|2,938.00| |
+|11/2023|2,938.00|$ 2,938.00|$|
+|12/2023|2,938.00|1,174.60|$ 1,763.40|
+|TOTAL|7,050.60|1,763.40| |
