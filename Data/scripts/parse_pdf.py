@@ -15,14 +15,14 @@ def parse():
         result_type="markdown"  # "markdown" and "text" are available
     )
     documents = SimpleDirectoryReader(
-        input_dir='./input',
+        input_dir='../input/ordinances',
         recursive=True,
         num_files_limit=100,
         file_extractor={".pdf": parser}).load_data()
 
     for doc in documents:
         # Create output filename based on document ID or other attributes
-        output_filename = f"./output/{doc.metadata['file_name']}.txt"
+        output_filename = f"../output/ordinances/{doc.metadata['file_name']}.txt"
         print('file_name', doc.metadata['file_name'])
 
         with open(output_filename, "w") as f:

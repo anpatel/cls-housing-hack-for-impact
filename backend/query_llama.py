@@ -13,6 +13,40 @@ app = Flask(__name__)
 CORS(app)
 
 
+def initialize_document_index(index_name, docs):
+    llm = OpenAI(temperature=0, model="gpt-4")
+
+#     llm = OpenAI(api_key="",
+#              temperature=0.1, model="gpt-4-0125-preview")
+# embed_model = OpenAIEmbedding(model="text-embedding-3-large")
+# service_context = ServiceContext.from_defaults(
+#     llm=llm, embed_model=embed_model)
+
+
+    PERSIST_DIR = "../Data/" + index_name
+    file_map = {}
+
+    if not os.path.exists(PERSIST_DIR):
+        ordinances = SimpleDirectoryReader('../data/output/ordinances').load_data()
+        documents = SimpleDirectoryReader(input_files=docs).load_data()
+        index = VectorStoreIndex.from_documents(
+            documents + ordinances,
+            llm=llm,
+        )
+        index.storage_context.persist(persist_dir=PERSIST_DIR)
+    else:
+        storage_context = StorageContext.from_defaults(persist_dir=PERSIST_DIR)
+        index = load_index_from_storage(storage_context)
+    index.llm = llm
+
+    return index.as_query_engine(
+        dense_similarity_top_k=3,
+        sparse_similarity_top_k=3,
+        alpha=0.5,
+        enable_reranking=True,
+    )
+
+
 def initialize_query_engine():
     llm = OpenAI(temperature=0, model="gpt-4")
     PERSIST_DIR = "../Data/storage"
@@ -29,6 +63,7 @@ def initialize_query_engine():
     else:
         storage_context = StorageContext.from_defaults(persist_dir=PERSIST_DIR)
         index = load_index_from_storage(storage_context)
+        
     index.llm = llm
 
     return index.as_query_engine(
