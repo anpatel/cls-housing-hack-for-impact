@@ -53,7 +53,7 @@ export default function Chat() {
 
     // Add mock AI response immediately
     const aiMessage = {
-      //   text: "amazing",
+      text: "Based on similar cases, pursuing a rent reduction or rebate has a high likelihood of success if sufficient evidence of ongoing pest issues can be presented.",
       sender: "ai",
       timestamp: new Date().toISOString(),
       caseInfo: [
@@ -123,14 +123,14 @@ export default function Chat() {
                   </Text>
                 </Flex>
               )}
-              {message?.text && (
+              {message.sender === "user" && (
                 <Box
                   maxW="70%"
                   px={4}
                   py={2}
                   borderRadius="full"
-                  bg={message.sender !== "user" ? "blue.500" : "#F5F5F5"}
-                  color={message.sender !== "user" ? "white" : "#1E1E1E"}
+                  bg="#F5F5F5"
+                  color="#1E1E1E"
                 >
                   <Text fontSize="16px" fontWeight="400" lineHeight="100%">
                     {message?.text}
@@ -246,6 +246,20 @@ export default function Chat() {
                       </Box>
                     </Box>
                   ))}
+                  {message.sender === "ai" && (
+                    <Box
+                      maxW="90%"
+                      mt="10px"
+                      px={4}
+                      py={2}
+                      borderRadius="full"
+                      color="#1E1E1E"
+                    >
+                      <Text fontSize="16px" fontWeight="400" lineHeight="100%">
+                        {message?.text}
+                      </Text>
+                    </Box>
+                  )}
                 </Flex>
               )}
             </Flex>
