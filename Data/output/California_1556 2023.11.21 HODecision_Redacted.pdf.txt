@@ -1,0 +1,32 @@
+# 1556 California St - Petición RHC #s C2230055 and C22230056
+
+# Attachment 1
+
+# Award Schedule
+
+# Credit Schedule
+
+|Month/Year of Rent Payment|Unpaid Rent Owed to Landlord|Rent Credited to Petitioner|Total Payment to be Paid by Petitioner|
+|---|---|---|---|
+|12/2023|$ 850.00|$ 747.00|$ 103.00|
+|1/2024|$ 850.00|$ 747.00|$ 103.00|
+|2/2024|$ 850.00|$ 747.00|$ 103.00|
+|3/2024|$ 850.00|$ 747.00|$ 103.00|
+|4/2024|$ 850.00|$ 747.00|$ 103.00|
+|5/2024|$ 850.00|$ 747.00|$ 103.00|
+|6/2024|$ 850.00|$ 747.00|$ 103.00|
+|7/2024|$ 850.00|$ 747.00|$ 103.00|
+|8/2024|$ 850.00|$ 747.00|$ 103.00|
+|9/2024|$ 850.00|$ 747.00|$ 103.00|
+|10/2024|$ 850.00|$ 747.06|$ 102.94|
+|TOTAL|TOTAL|TOTAL|$ 8,217.06|
+
+# Refund Schedule
+
+|Month/Year Refund Due|Overpayment Type|Refund Due|
+|---|---|---|
+|11/1/2024|10/2023 overpayment|TBD|
+|12/1/2024|11/2023 overpayment|TBD|
+|TOTAL|TOTAL|$ -|
+
+Page 2 of 4
