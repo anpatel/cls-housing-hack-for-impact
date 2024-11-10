@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import Home from "./Home";
+import Chat from "./Chat";
 import { ChakraProvider, extendTheme } from "@chakra-ui/react";
 
 const customTheme = extendTheme({
@@ -34,7 +35,8 @@ export default function App() {
   return (
     <ChakraProvider theme={customTheme}>
       <div className="App">
-        <Home />
+        {/* <Home /> */}
+        <Chat />
       </div>
     </ChakraProvider>
   );
