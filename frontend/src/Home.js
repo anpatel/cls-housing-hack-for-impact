@@ -26,10 +26,28 @@ export default function Home() {
     setIsLoading(true);
     console.log("Search query:", searchQuery);
 
-    setTimeout(() => {
-      setIsLoading(false);
-      navigate("/chat", { state: { query: searchQuery } });
-    }, 3000);
+    fetch(`${process.env.REACT_APP_BACKEND_DOMAIN}/api/query`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        question: searchQuery,
+      }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log("Query response:", data);
+        const aiResponse = data?.response;
+        setIsLoading(false);
+        navigate("/chat", {
+          state: { query: searchQuery, initialAiResponse: aiResponse },
+        });
+      })
+      .catch((error) => {
+        console.error("Error querying:", error);
+        setIsLoading(false);
+      });
   };
 
   return (

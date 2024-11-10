@@ -27,13 +27,51 @@ export default function Chat() {
   // Add useEffect to initialize chat with search query
   useEffect(() => {
     const initialQuery = location.state?.query;
+    const initialAiResponse = location.state?.initialAiResponse;
+    const initialMessage = {
+      text: initialQuery,
+      sender: "user",
+      timestamp: new Date().toISOString(),
+    };
+
+    const aiMessage = {
+      text: initialAiResponse,
+      sender: "ai",
+      timestamp: new Date().toISOString(),
+      caseInfo: [
+        {
+          caseNumber:
+            "Case #2023-054: Rosalene Nee vs. Woodland Park Communities",
+          summary:
+            "Rent reduction of 7.5% granted due to repeated roach infestations. Noise complaints were denied.",
+          outcome: "✅ Rent reduction granted | ❌ Noise complaint dismissed",
+          legalBasis:
+            "California Civil Code Section 1941.1 (Warranty of Habitability)",
+        },
+        {
+          caseNumber: "Case #2022-032: John Lee vs. Westfield Properties",
+          summary:
+            "Successful rebate for vermin infestation affecting tenant's health and property use.",
+          outcome: "✅ Rebate granted",
+          legalBasis: "Local Habitability Standards, Pest Control Requirement",
+        },
+        {
+          caseNumber: "Case #2021-078: Emily Wang vs. Summit Heights LLC",
+          summary:
+            "Case dismissed; tenant failed to provide sufficient evidence of ongoing pest issues.",
+          outcome: "❌ Complaint dismissed",
+          legalBasis: "Lack of corroborating evidence for pest complaints",
+        },
+      ],
+    };
+
     if (initialQuery) {
       const initialMessage = {
         text: initialQuery,
         sender: "user",
         timestamp: new Date().toISOString(),
       };
-      setMessages([initialMessage]);
+      setMessages([initialMessage, aiMessage]);
       // Trigger AI response for initial query
       handleSendMessage(initialQuery);
     }
