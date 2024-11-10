@@ -72,10 +72,14 @@ export default function Chat() {
       .then((response) => response.json())
       .then((data) => {
         console.log("Query response:", data);
-        const aiResponse = data?.response.response;
+        const aiResponse = data?.response;
+        const aiText = aiResponse.response;
+        const aiPdfLinks = aiResponse.files.map((file) => file.pdf_file_path);
+        console.log("aiPdfLinks", aiPdfLinks);
+
         // Add mock AI response immediately
         const aiMessage = {
-          text: aiResponse,
+          text: aiText,
           sender: "ai",
           timestamp: new Date().toISOString(),
           caseInfo: [
@@ -88,8 +92,9 @@ export default function Chat() {
                 "✅ Rent reduction granted | ❌ Noise complaint dismissed",
               legalBasis:
                 "California Civil Code Section 1941.1 (Warranty of Habitability)",
-              pdfLink:
-                "2023-01-23 Rent Boards Finding and Decisions Appeal Case 2021056 - 2070 Glen Way Apartment F.pdf",
+              // pdfLink:
+              //   "2023-01-23 Rent Boards Finding and Decisions Appeal Case 2021056 - 2070 Glen Way Apartment F.pdf",
+              pdfLink: aiPdfLinks[0] || "",
             },
             {
               caseNumber: "Case #2022-032: John Lee vs. Westfield Properties",
@@ -98,9 +103,10 @@ export default function Chat() {
               outcome: "✅ Rebate granted",
               legalBasis:
                 "Local Habitability Standards, Pest Control Requirement",
-              pdfLink:
-                "2023-01-23 Rent Boards Finding and Decisions Appeal Case 2021056 - 2070 Glen Way Apartment F.pdf",
-              // pdfLink: "Escuela_222 2024.01.25 AppealDecision_Redacted.pdf",
+              pdfLink: aiPdfLinks[1] || "",
+
+              // pdfLink:
+              //   "2023-01-23 Rent Boards Finding and Decisions Appeal Case 2021056 - 2070 Glen Way Apartment F.pdf",
             },
             {
               caseNumber: "Case #2021-078: Emily Wang vs. Summit Heights LLC",
@@ -108,8 +114,7 @@ export default function Chat() {
                 "Case dismissed; tenant failed to provide sufficient evidence of ongoing pest issues.",
               outcome: "❌ Complaint dismissed",
               legalBasis: "Lack of corroborating evidence for pest complaints",
-              pdfLink:
-                "2023-01-23 Rent Boards Finding and Decisions Appeal Case 2021056 - 2070 Glen Way Apartment F.pdf",
+              pdfLink: aiPdfLinks[2] || "",
             },
           ],
         };

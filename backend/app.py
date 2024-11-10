@@ -33,11 +33,9 @@ def get_file_names_and_paths_from_response(response):
         text_file_path = value['file_path']
         file_dict['text_file_path'] = text_file_path
         file_dict['file_name'] = file_name
-        text_file_path = text_file_path.rsplit('.', 1)[0]
-        text_file_path = text_file_path.replace('/output', '/input')
-        file_dict['pdf_file_path'] = text_file_path
+        pdf_filename = text_file_path.split('/')[-1].rsplit('.', 1)[0]
+        file_dict['pdf_file_path'] = pdf_filename
         file_info.append(file_dict)
-
     return file_info
 
 
