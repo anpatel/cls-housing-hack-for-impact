@@ -8,7 +8,9 @@ import {
   Button,
   Flex,
   Container,
+  InputRightElement,
 } from "@chakra-ui/react";
+import { SearchIcon } from "@chakra-ui/icons";
 
 export default function Chat() {
   const [messages, setMessages] = useState([]);
@@ -35,7 +37,6 @@ export default function Chat() {
     };
     setMessages((prevMessages) => [...prevMessages, aiMessage]);
 
-    // Optional: Keep the API call if you still want to send data to backend
     try {
       await fetch(`${process.env.REACT_APP_BACKEND_DOMAIN}/api/chat`, {
         method: "POST",
@@ -68,12 +69,24 @@ export default function Chat() {
             >
               <Box
                 maxW="70%"
-                bg={message.sender === "user" ? "blue.500" : "gray.100"}
-                color={message.sender === "user" ? "white" : "black"}
-                p={3}
-                borderRadius="lg"
+                display="inline-flex"
+                px={4}
+                py={2}
+                justifyContent="center"
+                alignItems="center"
+                gap="10px"
+                borderRadius="full"
+                bg={message.sender !== "user" ? "blue.500" : "#F5F5F5"}
+                color={message.sender !== "user" ? "white" : "#1E1E1E"}
               >
-                <Text>{message.text}</Text>
+                <Text
+                  fontFamily="Inter"
+                  fontSize="16px"
+                  fontWeight="400"
+                  lineHeight="100%"
+                >
+                  {message.text}
+                </Text>
               </Box>
             </Flex>
           ))}
@@ -87,14 +100,9 @@ export default function Chat() {
             onKeyDown={(e) => e.key === "Enter" && handleSendMessage()}
             placeholder="Type your message..."
           />
-          <Button
-            ml={2}
-            colorScheme="blue"
-            onClick={handleSendMessage}
-            isDisabled={!inputMessage.trim()}
-          >
-            Send
-          </Button>
+          <InputRightElement cursor="pointer" onClick={handleSendMessage}>
+            <SearchIcon color="gray.400" isDisabled={!inputMessage.trim()} />
+          </InputRightElement>
         </InputGroup>
       </VStack>
     </Container>

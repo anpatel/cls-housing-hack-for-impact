@@ -6,13 +6,19 @@ import {
   InputRightElement,
   Flex,
 } from "@chakra-ui/react";
+import { useNavigate } from "react-router-dom";
+
 import { SearchIcon } from "@chakra-ui/icons";
 
 export default function Home() {
   const [searchQuery, setSearchQuery] = useState("");
+  const navigate = useNavigate();
 
   const handleSearch = () => {
     console.log("Search query:", searchQuery);
+    if (searchQuery.trim()) {
+      navigate("/chat", { state: { query: searchQuery } });
+    }
   };
 
   return (
