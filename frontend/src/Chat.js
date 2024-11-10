@@ -99,12 +99,7 @@ export default function Chat() {
                 bg={message.sender !== "user" ? "blue.500" : "#F5F5F5"}
                 color={message.sender !== "user" ? "white" : "#1E1E1E"}
               >
-                <Text
-                  fontFamily="Inter"
-                  fontSize="16px"
-                  fontWeight="400"
-                  lineHeight="100%"
-                >
+                <Text fontSize="16px" fontWeight="400" lineHeight="100%">
                   {message.text}
                 </Text>
               </Box>
