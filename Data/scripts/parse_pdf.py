@@ -15,12 +15,17 @@ def parse():
     documents = SimpleDirectoryReader(
         input_dir='../input', 
         recursive=True, 
+        num_files_limit=3,
         file_extractor={".pdf": parser}).load_data() 
 
-    print(documents)
+    for doc in documents:
+        # Create output filename based on document ID or other attributes
+        output_filename = f"../output/{doc.metadata['file_name']}.txt" 
+
+        with open(output_filename, "w") as f:
+            f.write(doc.text)
 
 if __name__ == "__main__":
     set_api_key()
     load_dotenv()
     parse()
-
