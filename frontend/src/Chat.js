@@ -53,7 +53,7 @@ export default function Chat() {
 
     // Add mock AI response immediately
     const aiMessage = {
-      text: "amazing",
+      //   text: "amazing",
       sender: "ai",
       timestamp: new Date().toISOString(),
       caseInfo: [
@@ -123,18 +123,20 @@ export default function Chat() {
                   </Text>
                 </Flex>
               )}
-              <Box
-                maxW="70%"
-                px={4}
-                py={2}
-                borderRadius="full"
-                bg={message.sender !== "user" ? "blue.500" : "#F5F5F5"}
-                color={message.sender !== "user" ? "white" : "#1E1E1E"}
-              >
-                <Text fontSize="16px" fontWeight="400" lineHeight="100%">
-                  {message.text}
-                </Text>
-              </Box>
+              {message?.text && (
+                <Box
+                  maxW="70%"
+                  px={4}
+                  py={2}
+                  borderRadius="full"
+                  bg={message.sender !== "user" ? "blue.500" : "#F5F5F5"}
+                  color={message.sender !== "user" ? "white" : "#1E1E1E"}
+                >
+                  <Text fontSize="16px" fontWeight="400" lineHeight="100%">
+                    {message?.text}
+                  </Text>
+                </Box>
+              )}
               {message.sender === "ai" && message.caseInfo && (
                 <Flex direction="column" mt={3} ml={4}>
                   <Box mb="10px">
