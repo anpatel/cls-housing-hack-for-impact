@@ -1,5 +1,5 @@
 import "./App.css";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, React } from "react";
 import { useLocation } from "react-router-dom";
 import {
   Box,
@@ -11,6 +11,7 @@ import {
   Container,
   InputRightElement,
   Icon,
+  Grid,
 } from "@chakra-ui/react";
 import ReactMarkdown from "react-markdown";
 import { SearchIcon } from "@chakra-ui/icons";
@@ -74,7 +75,12 @@ export default function Chat() {
         console.log("Query response:", data);
         const aiResponse = data?.response;
         const aiText = aiResponse.response;
-        const aiPdfLinks = aiResponse.files.map((file) => file.pdf_file_path);
+        // const aiPdfLinks = aiResponse.files.map((file) => file.pdf_file_path);
+        const aiPdfLinks = [
+          "Escuela_222 2024.01.25 AppealDecision_Redacted.pdf",
+          "Montecito_1260 2023.10.24 AppealDecision_Redacted.pdf",
+          "Wentworth_1084 2024.05.06 HODecision_Redacted.pdf",
+        ];
         console.log("aiPdfLinks", aiPdfLinks);
 
         // Add mock AI response immediately
@@ -85,28 +91,25 @@ export default function Chat() {
           caseInfo: [
             {
               caseNumber:
-                "Case #2023-054: Rosalene Nee vs. Woodland Park Communities",
+                "Case #C22330052: Judith Hernandez and Israel Gonzales vs. Highland Garden Apartments (222 Escuela Avenue)",
               summary:
-                "Rent reduction of 7.5% granted due to repeated roach infestations. Noise complaints were denied.",
+                "Rent reduction of 40% granted for January to July 2023 due to a mold issue caused by prolonged moisture in the living room wall, which the landlord failed to repair adequately. Minor repairs were made, but mold reoccurred, impacting the tenants’ living conditions.",
               outcome:
-                "✅ Rent reduction granted | ❌ Noise complaint dismissed",
+                "✅ Rent reduction granted | ❌ Initial timeline claim dismissed",
               legalBasis:
-                "California Civil Code Section 1941.1 (Warranty of Habitability)",
-              // pdfLink:
-              //   "2023-01-23 Rent Boards Finding and Decisions Appeal Case 2021056 - 2070 Glen Way Apartment F.pdf",
+                "Community Stabilization and Fair Rent Act (CSFRA), California Civil Code Section 1941.1 (Warranty of Habitability)",
               pdfLink: aiPdfLinks[0] || "",
             },
             {
-              caseNumber: "Case #2022-032: John Lee vs. Westfield Properties",
+              caseNumber:
+                "Case #C22230030: Siamack Yaghoubzadeh vs. TFT Investments (1260 Montecito Avenue)",
               summary:
-                "Successful rebate for vermin infestation affecting tenant's health and property use.",
-              outcome: "✅ Rebate granted",
+                "Rent reduction of 25% granted for December 2022 to February 2023 due to the landlord’s failure to address mold and water leaks promptly, impacting health and habitability. The landlord placed a tarp on the roof but delayed adequate repairs, resulting in prolonged unaddressed issues.",
+              outcome:
+                "✅ Rent reduction granted | ❌ Landlord appeal on mold and uninhabitability denied",
               legalBasis:
-                "Local Habitability Standards, Pest Control Requirement",
+                "CSFRA, California Civil Code Section 1941.1 (Warranty of Habitability)​",
               pdfLink: aiPdfLinks[1] || "",
-
-              // pdfLink:
-              //   "2023-01-23 Rent Boards Finding and Decisions Appeal Case 2021056 - 2070 Glen Way Apartment F.pdf",
             },
             {
               caseNumber: "Case #2021-078: Emily Wang vs. Summit Heights LLC",
@@ -219,26 +222,96 @@ export default function Chat() {
                   </ReactMarkdown>
                 </Box>
               )}
+
+              {message.sender === "ai" && (
+                <>
+                  <Box
+                    width="90%"
+                    height="1px"
+                    background="rgba(128, 128, 128, 0.55)"
+                  />
+
+                  <Flex direction="column" padding="8px 16px">
+                    <Text
+                      mt="10px"
+                      color="#2C2C2C"
+                      fontSize="24px"
+                      fontStyle="normal"
+                      fontWeight={400}
+                      lineHeight="32px"
+                    >
+                      Tenant Profile
+                    </Text>
+                    <Box padding="16px" width="100%">
+                      <Grid templateColumns="200px 1fr" gap={4}>
+                        {[
+                          { label: "Name:", value: "John Doe" },
+                          {
+                            label: "Address:",
+                            value: "1234 Elm St, East Palo Alto, CA 94303",
+                          },
+                          {
+                            label: "Contact:",
+                            value: "johndoe@email.com, (555) 123-4567",
+                          },
+                          { label: "Employment Status:", value: "Employed" },
+                          { label: "Monthly Rent:", value: "$1200" },
+                          { label: "Security Deposit:", value: "$1200" },
+                        ].map((item, index) => (
+                          <>
+                            <Text
+                              color="#2C2C2C"
+                              fontSize="14px"
+                              fontWeight={500}
+                              lineHeight="20px"
+                              letterSpacing="0.1px"
+                              fontStyle="normal"
+                            >
+                              {item.label}
+                            </Text>
+                            <Text
+                              color="#1E1E1E"
+                              fontSize="14px"
+                              fontStyle="normal"
+                              fontWeight={400}
+                              lineHeight="20px"
+                              letterSpacing="0.25px"
+                            >
+                              {item.value}
+                            </Text>
+                          </>
+                        ))}
+                      </Grid>
+                    </Box>
+                  </Flex>
+                  <Box
+                    width="90%"
+                    height="1px"
+                    background="rgba(128, 128, 128, 0.55)"
+                  />
+                  <Flex>
+                    <Flex padding="8px 16px">
+                      <Text
+                        mt="10px"
+                        color="#2C2C2C"
+                        fontSize="24px"
+                        fontStyle="normal"
+                        fontWeight={400}
+                        lineHeight="32px"
+                      >
+                        Past Cases Example
+                      </Text>
+                    </Flex>
+                  </Flex>
+                </>
+              )}
+
               {message.sender === "ai" &&
                 message.caseInfo &&
                 messages
                   .filter((msg) => msg.sender === "ai")
                   .indexOf(message) === 0 && (
                   <Flex direction="column" mt={3} ml={4}>
-                    <Box mb="10px">
-                      <Text display="inline">78 Relevant Cases Found for </Text>
-                      <Text
-                        display="inline-flex"
-                        padding="8px"
-                        justifyContent="center"
-                        alignItems="center"
-                        gap="8px"
-                        borderRadius="8px"
-                        background="#F5F5F5"
-                      >
-                        habitability issues related to pest infestation
-                      </Text>
-                    </Box>
                     <Text
                       color="#1E1E1E"
                       fontSize="12px"
@@ -337,29 +410,6 @@ export default function Chat() {
                               View Full Case
                             </Text>
                           </Box>
-                          {/* <Box
-                            display="flex"
-                            padding="8px"
-                            justifyContent="center"
-                            alignItems="center"
-                            gap="8px"
-                            borderRadius="8px"
-                            border="1px solid #767676"
-                            background="#E3E3E3"
-                            width="123px"
-                            mt="12px"
-                          >
-                            <Text
-                              color="#1E1E1E"
-                              fontSize="11px"
-                              fontStyle="normal"
-                              fontWeight={500}
-                              lineHeight="16px"
-                              letterSpacing="0.5px"
-                            >
-                              View Full Summary
-                            </Text>
-                          </Box> */}
                         </Box>
                       </Box>
                     ))}
