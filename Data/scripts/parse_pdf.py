@@ -29,3 +29,4 @@ if __name__ == "__main__":
     set_api_key()
     load_dotenv()
     parse()
+
