@@ -78,7 +78,7 @@ export default function Home() {
         </InputGroup>
         <Box
           mt={4}
-          width="420px"
+          width="436px"
           display="flex"
           padding="8px"
           justifyContent="center"
