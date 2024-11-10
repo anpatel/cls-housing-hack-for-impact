@@ -165,9 +165,11 @@ export default function Chat() {
                   maxW="70%"
                   px={4}
                   py={2}
-                  borderRadius="full"
+                  borderRadius="md"
                   bg="#F5F5F5"
                   color="#1E1E1E"
+                  wordBreak="break-word"
+                  whiteSpace="pre-wrap"
                 >
                   <Text fontSize="16px" fontWeight="400" lineHeight="100%">
                     {message?.text}
