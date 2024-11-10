@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useLocation } from "react-router-dom";
 import {
   Box,
   VStack,
@@ -16,18 +17,37 @@ export default function Chat() {
   const [messages, setMessages] = useState([]);
   const [inputMessage, setInputMessage] = useState("");
 
-  const handleSendMessage = async () => {
-    if (!inputMessage.trim()) return;
+  // Add this to get the location state
+  const location = useLocation();
 
-    // Add user message to chat
-    const userMessage = {
-      text: inputMessage,
-      sender: "user",
-      timestamp: new Date().toISOString(),
-    };
+  // Add useEffect to initialize chat with search query
+  useEffect(() => {
+    const initialQuery = location.state?.query;
+    if (initialQuery) {
+      const initialMessage = {
+        text: initialQuery,
+        sender: "user",
+        timestamp: new Date().toISOString(),
+      };
+      setMessages([initialMessage]);
+      // Trigger AI response for initial query
+      handleSendMessage(initialQuery);
+    }
+  }, []);
 
-    setMessages((prevMessages) => [...prevMessages, userMessage]);
-    setInputMessage("");
+  const handleSendMessage = async (messageText = inputMessage) => {
+    if (!messageText.trim()) return;
+
+    // Add user message to chat if it's not from initial query
+    if (messageText === inputMessage) {
+      const userMessage = {
+        text: messageText,
+        sender: "user",
+        timestamp: new Date().toISOString(),
+      };
+      setMessages((prevMessages) => [...prevMessages, userMessage]);
+      setInputMessage("");
+    }
 
     // Add mock AI response immediately
     const aiMessage = {
