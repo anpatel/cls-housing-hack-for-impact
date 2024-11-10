@@ -294,6 +294,35 @@ export default function Chat() {
                             </Text>
                           </Text>
                           <Box
+                            as="a" // Change Box to be an anchor
+                            href="Data/input/Mountain_View/California_1556 2023.11.21 HODecision_Redacted.pdf"
+                            target="_blank"
+                            display="flex"
+                            padding="8px"
+                            justifyContent="center"
+                            alignItems="center"
+                            gap="8px"
+                            borderRadius="8px"
+                            border="1px solid #767676"
+                            background="#E3E3E3"
+                            width="123px"
+                            mt="12px"
+                            cursor="pointer" // Add cursor pointer
+                            textDecoration="none" // Remove default link styling
+                            _hover={{ background: "#D1D1D1" }} // Optional: add hover effect
+                          >
+                            <Text
+                              color="#1E1E1E"
+                              fontSize="11px"
+                              fontStyle="normal"
+                              fontWeight={500}
+                              lineHeight="16px"
+                              letterSpacing="0.5px"
+                            >
+                              View Full Summary
+                            </Text>
+                          </Box>
+                          {/* <Box
                             display="flex"
                             padding="8px"
                             justifyContent="center"
@@ -315,7 +344,7 @@ export default function Chat() {
                             >
                               View Full Summary
                             </Text>
-                          </Box>
+                          </Box> */}
                         </Box>
                       </Box>
                     ))}
