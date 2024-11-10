@@ -3,7 +3,7 @@ from flask_cors import CORS
 from query_llama import initialize_query_engine
 
 app = Flask(__name__)
-CORS(app)  # Enable CORS for all routes
+CORS(app)
 
 
 @app.route('/')
@@ -22,8 +22,10 @@ def get_data():
     }
     return jsonify(data)
 
+
 def get_file_names_and_paths_from_response(response):
     metadata = response.metadata
+    print('metadata', metadata)
     file_info = []
     for key, value in metadata.items():
         file_dict = {}
@@ -59,56 +61,16 @@ def query_documents():
     })
 
 
-# 0676333b-6a39-436e-a7c8-de88a0738a82
-# : 
-# creation_date
-# : 
-# "2024-11-09"
-# file_name
-# : 
-# "Decision Franklin v WPC 20230001 and 20230002.pdf.md"
-# file_path
-# : 
-# "/Users/swimmingcircle/Code/cls-housing-hack-for-impact/Data/output/Decision Franklin v WPC 20230001 and 20230002.pdf.md"
-# file_size
-# : 
-# 10792
-# last_modified_date
-# : 
-# "2024-11-09"
-# [[Prototype]]
-# : 
-# Object
-# d2fd2c09-1f59-4682-a61e-93f7ad7063ff
-# : 
-# creation_date
-# : 
-# "2024-11-09"
-# file_name
-# : 
-# "Decision Franklin v WPC 20230001 and 20230002.pdf.md"
-# file_path
-# : 
-# "/Users/swimmingcircle/Code/cls-housing-hack-for-impact/Data/output/Decision Franklin v WPC 20230001 and 20230002.pdf.md"
-# file_size
-# : 
-# 10792
-# last_modified_date
-# : 
-# "2024-11-09"
-
-
 if __name__ == '__main__':
     app.run(debug=True, port=5000)
 
-
-        #  {
-        #       caseNumber:
-        #         "Case #2023-054: Rosalene Nee vs. Woodland Park Communities",
-        #       summary:
-        #         "Rent reduction of 7.5% granted due to repeated roach infestations. Noise complaints were denied.",
-        #       outcome:
-        #         "✅ Rent reduction granted | ❌ Noise complaint dismissed",
-        #       legalBasis:
-        #         "California Civil Code Section 1941.1 (Warranty of Habitability)",
-        #     },
+    #  {
+    #       caseNumber:
+    #         "Case #2023-054: Rosalene Nee vs. Woodland Park Communities",
+    #       summary:
+    #         "Rent reduction of 7.5% granted due to repeated roach infestations. Noise complaints were denied.",
+    #       outcome:
+    #         "✅ Rent reduction granted | ❌ Noise complaint dismissed",
+    #       legalBasis:
+    #         "California Civil Code Section 1941.1 (Warranty of Habitability)",
+    #     },

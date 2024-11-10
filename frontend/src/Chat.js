@@ -88,6 +88,8 @@ export default function Chat() {
                 "✅ Rent reduction granted | ❌ Noise complaint dismissed",
               legalBasis:
                 "California Civil Code Section 1941.1 (Warranty of Habitability)",
+              pdfLink:
+                "2023-01-23 Rent Boards Finding and Decisions Appeal Case 2021056 - 2070 Glen Way Apartment F.pdf",
             },
             {
               caseNumber: "Case #2022-032: John Lee vs. Westfield Properties",
@@ -96,6 +98,9 @@ export default function Chat() {
               outcome: "✅ Rebate granted",
               legalBasis:
                 "Local Habitability Standards, Pest Control Requirement",
+              pdfLink:
+                "2023-01-23 Rent Boards Finding and Decisions Appeal Case 2021056 - 2070 Glen Way Apartment F.pdf",
+              // pdfLink: "Escuela_222 2024.01.25 AppealDecision_Redacted.pdf",
             },
             {
               caseNumber: "Case #2021-078: Emily Wang vs. Summit Heights LLC",
@@ -103,9 +108,13 @@ export default function Chat() {
                 "Case dismissed; tenant failed to provide sufficient evidence of ongoing pest issues.",
               outcome: "❌ Complaint dismissed",
               legalBasis: "Lack of corroborating evidence for pest complaints",
+              pdfLink:
+                "2023-01-23 Rent Boards Finding and Decisions Appeal Case 2021056 - 2070 Glen Way Apartment F.pdf",
             },
           ],
         };
+
+        console.log("aiMessage", aiMessage);
         setMessages((prevMessages) => [...prevMessages, aiMessage]);
       })
 
@@ -294,7 +303,9 @@ export default function Chat() {
                           </Text>
                           <Box
                             as="a" // Change Box to be an anchor
-                            href="2023-01-23 Rent Boards Finding and Decisions Appeal Case 2021056 - 2070 Glen Way Apartment F.pdf"
+                            href={caseItem.pdfLink}
+                            onClick={() => console.log("PDF Link:", caseItem)} // Add this to debug
+                            // href="2023-01-23 Rent Boards Finding and Decisions Appeal Case 2021056 - 2070 Glen Way Apartment F.pdf"
                             target="_blank"
                             display="flex"
                             padding="8px"
@@ -318,7 +329,7 @@ export default function Chat() {
                               lineHeight="16px"
                               letterSpacing="0.5px"
                             >
-                              View Full Summary
+                              View Full Case
                             </Text>
                           </Box>
                           {/* <Box
