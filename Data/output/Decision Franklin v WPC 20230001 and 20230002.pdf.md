@@ -3,10 +3,10 @@ RENT STABILIZATION BOARD
 CITY OF EAST PALO ALTO
 
 Kenneth Franklin,  
-Petitioner                    CASE NO. 2023-0001 and 2023-0002
+Petitioner CASE NO. 2023-0001 and 2023-0002
 
 Vs.
-                             DECISION AFTER HEARING
+DECISION AFTER HEARING
 Woodland Park Communities,  
 Respondent
 
@@ -24,8 +24,8 @@ On February 15, 2024, Woodland Park filed a response in opposition to the petiti
 
 ## RELIEF REQUESTED
 
-The petition requests that Franklin's rent be reduced.
----
+## The petition requests that Franklin's rent be reduced.
+
 # EVIDENCE
 
 Franklin has been a tenant in his rental unit since May 2010. In July and August 2023, Franklin brought to the attention of Woodland Park that the outdoor patio had cracks and was uneven, making it difficult for him to store plastic containers holding his work materials in that area. More recently, Franklin brought to the attention of Woodland Park that the bathtub was in need of repair as part of it was coming apart and clogging the drain.
@@ -44,8 +44,8 @@ Section 13 of the City's Rent Stabilization and Just Cause for Eviction Ordinanc
 
 Subsection E of Section 1500 of the Rent Stabilization Board Regulations for Residential Tenancies in the City of East Palo Alto ("Regulations") sets for the grounds for reductions in rent. These include a failure of a landlord to comply with the "Warranty of Habitability" set forth in California Civil Code, section 1941.1, failure to comply with building or housing codes or other legal requirements for the maintenance and operation of rental housing which affects the livability and/or rental value of the rental unit, and decreases in housing services or failure to provide adequate maintenance without a corresponding reduction in rent. Minor maintenance deficiencies or deterioration, however, that have no or insignificant impacts on the livability of rental value of a rental unit and that do not cause any health and safety risk shall not provide a basis for reduction in the rent.
 
-Under California Civil Code, section 1941.1, a dwelling shall be deemed untenantable if it substantially lacks any of the following: effective waterproofing and weather protection of roof and exterior walls; plumbing or gas facilities maintained in good working order; a water supply, capable
----
+## Under California Civil Code, section 1941.1, a dwelling shall be deemed untenantable if it substantially lacks any of the following: effective waterproofing and weather protection of roof and exterior walls; plumbing or gas facilities maintained in good working order; a water supply, capable
+
 of providing hot and cold running water; heating facilities maintained in good working order; electrical lighting maintained in good working order; building, grounds, and appurtenances kept in clean, sanitary and free from all accumulation of debris, rubbish, rodents, and vermin; an adequate number of receptacles for garbage and rubbish; and floors, stairways, and railings maintained in good repair.
 
 A petitioner shall bear the burden of proof and must prove by a preponderance of evidence the grounds for a reduction in rent. Regulations, at paragraph c, subsection E, Section 1500. Reductions in rent shall be effective from the date that the landlord first had notice or should have known of the condition providing the basis of the reduction. For failures justifying a reduction in rent that are ongoing at the time of hearing, the reduction shall be in effect until the failure is corrected. Regulations, at Paragraph d, subsection E, Section 1500.
@@ -60,8 +60,8 @@ It does not appear that the condition of the patio area constitutes a failure of
 
 Rent, however, includes housing services and, as stated above, housing services are broadly defined and include repairs, maintenance, and any other benefit connected with the use or occupancy of a rental unit. Certainly the use of backyard patio is a benefit connected with the use or occupancy of the rental unit and Franklin testified that the condition of the backyard patio has prevented him from using it. Moreover, the backyard patio has cracks and is uneven and it is evident that these conditions have existed for some time—perhaps years—indicating that the conditions are more than minor maintenance deficiencies or deterioration that have no or an insignificant impact on the livability or rental value of the rental unit. On the other hand, the condition of the bathtub does appear to be a minor maintenance deficiency or deterioration that have no or an insignificant impact on the livability or rental value of the rental unit.
 
-Woodland Park has been on notice of the condition of the backyard patio since July 2023 and although an invoice submitted to Woodland Park indicates repair work was undertaken to the patio in August 2023, Franklin testified that no such work occurred and the Hearing Officer also did not
----
+## Woodland Park has been on notice of the condition of the backyard patio since July 2023 and although an invoice submitted to Woodland Park indicates repair work was undertaken to the patio in August 2023, Franklin testified that no such work occurred and the Hearing Officer also did not
+
 observe any repairs to the patio. Accordingly, Franklin has carried his burden of proof that he is entitled to a rent reduction based on the condition of the backyard patio and a 5% reduction in rent is reasonable. The reduction will be applied to the rent paid from July 2023 to the present and will continue until the condition of the backyard patio is fixed. Woodland Park's proposed solution to the condition of the patio is to "shave" the concrete in order to make the patio level. It is uncertain that will adequately address the condition.
 
 ## DECISION
