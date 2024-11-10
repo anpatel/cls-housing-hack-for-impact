@@ -81,7 +81,9 @@ export default function Chat() {
       .then((data) => {
         console.log("Query response:", data);
         const aiResponse = data?.response;
-        const aiText = aiResponse.response;
+        const aiLegalArguement = aiResponse.legal_argument;
+        const caseType = aiResponse.case_type;
+
         // const aiPdfLinks = aiResponse.files.map((file) => file.pdf_file_path);
         const aiPdfLinks = [
           "Escuela_222 2024.01.25 AppealDecision_Redacted.pdf",
@@ -92,7 +94,8 @@ export default function Chat() {
 
         // Add mock AI response immediately
         const aiMessage = {
-          text: aiText,
+          caseType: caseType,
+          legalArguement: aiLegalArguement,
           sender: "ai",
           timestamp: new Date().toISOString(),
           caseInfo: [
@@ -189,44 +192,48 @@ export default function Chat() {
                   borderRadius="full"
                   color="#1E1E1E"
                 >
-                  {messages
-                    .filter((msg) => msg.sender === "ai")
-                    .indexOf(message) === 0 && (
-                    <Flex align="center">
-                      <Text
-                        color="#2C2C2C"
-                        fontSize="16px"
-                        fontStyle="normal"
-                        fontWeight={600}
-                        lineHeight="140%"
-                        mr={4}
-                      >
-                        Estimated Success Likelihood:
-                      </Text>
-                      <Box
-                        display="flex"
-                        width="80px"
-                        padding="8px"
-                        justifyContent="center"
-                        alignItems="center"
-                        gap="8px"
-                        background=" #14AE5C"
-                        borderRadius="8px"
-                      >
-                        <Text
-                          color="#F5F5F5"
-                          fontSize="12px"
-                          fontWeight={700}
-                          lineHeight="100%"
-                        >
-                          High
-                        </Text>
-                      </Box>
-                    </Flex>
-                  )}
-                  <ReactMarkdown className="markdown-content">
-                    {message.text}
-                  </ReactMarkdown>
+                  <Text
+                    color="#2C2C2C"
+                    fontSize="16px"
+                    fontWeight={500}
+                    lineHeight="24px"
+                    letterSpacing="0.15px"
+                    mt="12px"
+                    mb="8px"
+                  >
+                    Issue(s):
+                  </Text>
+                  <Text
+                    color="#1E1E1E"
+                    fontSize="14px"
+                    fontStyle="normal"
+                    fontWeight={400}
+                    lineHeight="20px"
+                    letterSpacing="0.25px"
+                  >
+                    {message.caseType}
+                  </Text>
+                  <Text
+                    color="#2C2C2C"
+                    fontSize="16px"
+                    fontWeight={500}
+                    lineHeight="24px"
+                    letterSpacing="0.15px"
+                    mt="12px"
+                    mb="8px"
+                  >
+                    Legal Argument:
+                  </Text>
+                  <Text
+                    color="#1E1E1E"
+                    fontSize="14px"
+                    fontStyle="normal"
+                    fontWeight={400}
+                    lineHeight="20px"
+                    letterSpacing="0.25px"
+                  >
+                    {message.legalArguement}
+                  </Text>
                 </Box>
               )}
 

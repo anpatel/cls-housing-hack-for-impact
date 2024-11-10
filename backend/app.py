@@ -31,7 +31,7 @@ def query_specific_documents(files):
         file_name = file['file_name']
         document_path = "../data/output/" + file_name
         dir_path = os.path.dirname(os.path.realpath(__file__))
-        
+
         case_number = initialize_document_index('result_search', [document_path]).query(
             'Using the case and housing ordinance files, please provide me with the cases number').response
         summary = initialize_document_index('result_search', [document_path]).query(
@@ -43,7 +43,7 @@ def query_specific_documents(files):
             'summary': summary,
             'legal_basis': legal_basis
         }
-        dict_response['file_name'] = file_name  
+        dict_response['file_name'] = file_name
         files_output.append(dict_response)
 
     return files_output
@@ -72,17 +72,18 @@ def query_documents():
     if not data or 'question' not in data:
         return jsonify({"error": "No question provided"}), 400
 
-    question = 'pretend i am an attorney. help me make a legal argument for the new client, providing me with 1-2 of the most compelling, robust legal arguments. each of the 1-2 arguments should be fewer than 50 words. base your arguments off of the relevant local ordinances and the specifics about the client. ensure your 1-2 arguments are highly specific and cite previous relevant cases/stats in your knowledge base. client information: ' + data['question']
+    question = 'pretend i am an attorney. help me make a legal argument for the new client, providing me with 1-2 of the most compelling, robust legal arguments. each of the 1-2 arguments should be fewer than 50 words. base your arguments off of the relevant local ordinances and the specifics about the client. ensure your 1-2 arguments are highly specific and cite previous relevant cases/stats in your knowledge base. client information: ' + \
+        data['question']
 
     response = query_engine.query(question)
-    files = get_file_names_and_paths_from_response(response)
+    # files = get_file_names_and_paths_from_response(response)
     response_dict = {}
     response_dict['legal_argument'] = response.response
-    response_dict['files'] = files
+    # response_dict['files'] = files
     response_dict['case_type'] = 'Habitability Issue -- Pest Infestation and Mold'
 
-    file_output = query_specific_documents(files)
-    response_dict['file_output'] = file_output
+    # file_output = query_specific_documents(files)
+    # response_dict['file_output'] = file_output
 
     return jsonify({
         "question": question,
