@@ -230,74 +230,19 @@ export default function Chat() {
                 </Box>
               )}
 
-              {message.sender === "ai" && (
-                <>
-                  <Box
-                    width="90%"
-                    height="1px"
-                    background="rgba(128, 128, 128, 0.55)"
-                  />
+              {message.sender === "ai" &&
+                message.caseInfo &&
+                messages
+                  .filter((msg) => msg.sender === "ai")
+                  .indexOf(message) === 0 && (
+                  <>
+                    <Box
+                      width="90%"
+                      height="1px"
+                      background="rgba(128, 128, 128, 0.55)"
+                    />
 
-                  <Flex direction="column" padding="8px 16px">
-                    <Text
-                      mt="10px"
-                      color="#2C2C2C"
-                      fontSize="24px"
-                      fontStyle="normal"
-                      fontWeight={400}
-                      lineHeight="32px"
-                    >
-                      Tenant Profile
-                    </Text>
-                    <Box padding="16px" width="100%">
-                      <Grid templateColumns="200px 1fr" gap={4}>
-                        {[
-                          { label: "Name:", value: "John Doe" },
-                          {
-                            label: "Address:",
-                            value: "1234 Elm St, East Palo Alto, CA 94303",
-                          },
-                          {
-                            label: "Contact:",
-                            value: "johndoe@email.com, (555) 123-4567",
-                          },
-                          { label: "Employment Status:", value: "Employed" },
-                          { label: "Monthly Rent:", value: "$1200" },
-                          { label: "Security Deposit:", value: "$1200" },
-                        ].map((item, index) => (
-                          <>
-                            <Text
-                              color="#2C2C2C"
-                              fontSize="14px"
-                              fontWeight={500}
-                              lineHeight="20px"
-                              letterSpacing="0.1px"
-                              fontStyle="normal"
-                            >
-                              {item.label}
-                            </Text>
-                            <Text
-                              color="#1E1E1E"
-                              fontSize="14px"
-                              fontStyle="normal"
-                              fontWeight={400}
-                              lineHeight="20px"
-                              letterSpacing="0.25px"
-                            >
-                              {item.value}
-                            </Text>
-                          </>
-                        ))}
-                      </Grid>
-                    </Box>
-                  </Flex>
-                  <Box
-                    width="90%"
-                    height="1px"
-                    background="rgba(128, 128, 128, 0.55)"
-                  />
-                  <Flex>
-                    <Flex padding="8px 16px">
+                    <Flex direction="column" padding="8px 16px">
                       <Text
                         mt="10px"
                         color="#2C2C2C"
@@ -306,12 +251,71 @@ export default function Chat() {
                         fontWeight={400}
                         lineHeight="32px"
                       >
-                        Past Cases Example
+                        Tenant Profile
                       </Text>
+                      <Box padding="16px" width="100%">
+                        <Grid templateColumns="200px 1fr" gap={4}>
+                          {[
+                            { label: "Name:", value: "John Doe" },
+                            {
+                              label: "Address:",
+                              value: "1234 Elm St, East Palo Alto, CA 94303",
+                            },
+                            {
+                              label: "Contact:",
+                              value: "johndoe@email.com, (555) 123-4567",
+                            },
+                            { label: "Employment Status:", value: "Employed" },
+                            { label: "Monthly Rent:", value: "$1200" },
+                            { label: "Security Deposit:", value: "$1200" },
+                          ].map((item, index) => (
+                            <>
+                              <Text
+                                color="#2C2C2C"
+                                fontSize="14px"
+                                fontWeight={500}
+                                lineHeight="20px"
+                                letterSpacing="0.1px"
+                                fontStyle="normal"
+                              >
+                                {item.label}
+                              </Text>
+                              <Text
+                                color="#1E1E1E"
+                                fontSize="14px"
+                                fontStyle="normal"
+                                fontWeight={400}
+                                lineHeight="20px"
+                                letterSpacing="0.25px"
+                              >
+                                {item.value}
+                              </Text>
+                            </>
+                          ))}
+                        </Grid>
+                      </Box>
                     </Flex>
-                  </Flex>
-                </>
-              )}
+                    <Box
+                      width="90%"
+                      height="1px"
+                      background="rgba(128, 128, 128, 0.55)"
+                    />
+                    <Flex>
+                      <Flex padding="8px 16px">
+                        <Text
+                          mt="10px"
+                          color="#2C2C2C"
+                          fontSize="24px"
+                          fontStyle="normal"
+                          fontWeight={400}
+                          lineHeight="32px"
+                        >
+                          Past Cases Example
+                        </Text>
+                      </Flex>
+                    </Flex>
+                  </>
+                )}
 
               {message.sender === "ai" &&
                 message.caseInfo &&
