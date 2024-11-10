@@ -3,13 +3,17 @@ import {
   Text,
   Input,
   InputGroup,
-  InputLeftElement,
+  InputRightElement,
   Flex,
 } from "@chakra-ui/react";
 import { SearchIcon } from "@chakra-ui/icons";
 
 export default function Home() {
   const [searchQuery, setSearchQuery] = useState("");
+
+  const handleSearch = () => {
+    console.log("Search query:", searchQuery);
+  };
 
   return (
     <div className="App" textAlign="center">
@@ -39,16 +43,17 @@ export default function Home() {
         </Text>
 
         <InputGroup maxW="600px" mt={6}>
-          <InputLeftElement pointerEvents="none">
-            <SearchIcon color="gray.400" />
-          </InputLeftElement>
           <Input
             placeholder="habitability issues related to pest infestation"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
+            onKeyDown={(e) => e.key === "Enter" && handleSearch()}
             size="lg"
             borderRadius="md"
           />
+          <InputRightElement cursor="pointer" mt="5px" onClick={handleSearch}>
+            <SearchIcon color="gray.400" />
+          </InputRightElement>
         </InputGroup>
       </Flex>
     </div>
