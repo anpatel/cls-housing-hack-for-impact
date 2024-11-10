@@ -22,7 +22,6 @@ export default function Home() {
   const navigate = useNavigate();
 
   const handleSearch = () => {
-    console.log("Search query:", searchQuery);
     setIsLoading(true);
     console.log("Search query:", searchQuery);
 

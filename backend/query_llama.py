@@ -12,8 +12,6 @@ import os.path
 app = Flask(__name__)
 CORS(app)
 
-# Initialize the query engine at startup
-
 
 def initialize_query_engine():
     llm = OpenAI(temperature=0, model="gpt-4")

@@ -1,5 +1,5 @@
 import "./App.css";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useLocation } from "react-router-dom";
 import {
   Box,
@@ -23,29 +23,31 @@ export default function Chat() {
 
   // Add this to get the location state
   const location = useLocation();
+  const isInitialMount = useRef(true);
 
-  // Add useEffect to initialize chat with search query
   useEffect(() => {
-    const initialQuery = location.state?.query;
-    const initialMessage = {
-      text: initialQuery,
-      sender: "user",
-      timestamp: new Date().toISOString(),
-    };
+    if (isInitialMount.current) {
+      isInitialMount.current = false;
 
-    if (initialQuery) {
-      const initialMessage = {
-        text: initialQuery,
-        sender: "user",
-        timestamp: new Date().toISOString(),
-      };
-      setMessages([initialMessage]);
-      // Trigger AI response for initial query
-      handleSendMessage(initialQuery);
+      const initialQuery = location.state?.query;
+
+      if (initialQuery) {
+        console.log("Initial query:", initialQuery);
+        const initialMessage = {
+          text: initialQuery,
+          sender: "user",
+          timestamp: new Date().toISOString(),
+        };
+        setMessages([initialMessage]);
+
+        // Trigger AI response for initial query
+        handleSendMessage(initialQuery);
+      }
     }
   }, []);
 
   const handleSendMessage = async (messageText = inputMessage) => {
+    console.log("we call handleSendMessage");
     if (!messageText.trim()) return;
 
     // Add user message to chat if it's not from initial query
@@ -176,6 +178,51 @@ export default function Chat() {
                   </Text>
                 </Box>
               )}
+              {message.sender === "ai" && (
+                <Box
+                  maxW="90%"
+                  mt="10px"
+                  px={4}
+                  py={2}
+                  borderRadius="full"
+                  color="#1E1E1E"
+                >
+                  <Flex align="center">
+                    <Text
+                      color="#2C2C2C"
+                      fontSize="16px"
+                      fontStyle="normal"
+                      fontWeight={600}
+                      lineHeight="140%"
+                      mr={4}
+                    >
+                      Estimated Success Likelihood:
+                    </Text>
+                    <Box
+                      display="flex"
+                      width="80px"
+                      padding="8px"
+                      justifyContent="center"
+                      alignItems="center"
+                      gap="8px"
+                      background=" #14AE5C"
+                      borderRadius="8px"
+                    >
+                      <Text
+                        color="#F5F5F5"
+                        fontSize="12px"
+                        fontWeight={700}
+                        lineHeight="100%"
+                      >
+                        High
+                      </Text>
+                    </Box>
+                  </Flex>
+                  <ReactMarkdown className="markdown-content">
+                    {message.text}
+                  </ReactMarkdown>
+                </Box>
+              )}
               {message.sender === "ai" && message.caseInfo && (
                 <Flex direction="column" mt={3} ml={4}>
                   <Box mb="10px">
@@ -285,20 +332,6 @@ export default function Chat() {
                       </Box>
                     </Box>
                   ))}
-                  {message.sender === "ai" && (
-                    <Box
-                      maxW="90%"
-                      mt="10px"
-                      px={4}
-                      py={2}
-                      borderRadius="full"
-                      color="#1E1E1E"
-                    >
-                      <ReactMarkdown className="markdown-content">
-                        {message.text}
-                      </ReactMarkdown>
-                    </Box>
-                  )}
                 </Flex>
               )}
             </Flex>
