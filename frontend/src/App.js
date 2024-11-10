@@ -1,6 +1,12 @@
 import { useState, useEffect } from "react";
+import Home from "./Home";
+import { ChakraProvider, extendTheme } from "@chakra-ui/react";
 
-// ... existing imports ...
+const customTheme = extendTheme({
+  fonts: {
+    body: "Roboto, sans-serif",
+  },
+});
 
 export default function App() {
   const [data, setData] = useState(null);
@@ -26,19 +32,10 @@ export default function App() {
   }, []);
 
   return (
-    <div className="App">
-      <header className="App-header">
-        {/* ... existing header content ... */}
-
-        {/* Add this section to display the data */}
-        <div>
-          {data ? (
-            <pre>{JSON.stringify(data, null, 2)}</pre>
-          ) : (
-            <p>Loading data...</p>
-          )}
-        </div>
-      </header>
-    </div>
+    <ChakraProvider theme={customTheme}>
+      <div className="App">
+        <Home />
+      </div>
+    </ChakraProvider>
   );
 }
