@@ -5,20 +5,31 @@ import {
   InputGroup,
   InputRightElement,
   Flex,
+  Box,
+  Button,
+  Icon,
+  Spinner,
 } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
+import { FaUpload } from "react-icons/fa";
 
 import { SearchIcon } from "@chakra-ui/icons";
 
 export default function Home() {
   const [searchQuery, setSearchQuery] = useState("");
+  const [isLoading, setIsLoading] = useState(false); // Add this
+
   const navigate = useNavigate();
 
   const handleSearch = () => {
     console.log("Search query:", searchQuery);
-    if (searchQuery.trim()) {
+    setIsLoading(true);
+    console.log("Search query:", searchQuery);
+
+    setTimeout(() => {
+      setIsLoading(false);
       navigate("/chat", { state: { query: searchQuery } });
-    }
+    }, 3000);
   };
 
   return (
@@ -48,7 +59,7 @@ export default function Home() {
           studies from your library, powered by our AI assistant.
         </Text>
 
-        <InputGroup maxW="600px" mt={6}>
+        <InputGroup maxW="420px" mt={6}>
           <Input
             placeholder="habitability issues related to pest infestation"
             value={searchQuery}
@@ -58,9 +69,62 @@ export default function Home() {
             borderRadius="md"
           />
           <InputRightElement cursor="pointer" mt="5px" onClick={handleSearch}>
-            <SearchIcon color="gray.400" />
+            {isLoading ? (
+              <Spinner size="sm" color="gray.400" />
+            ) : (
+              <SearchIcon color="gray.400" />
+            )}
           </InputRightElement>
         </InputGroup>
+        <Box
+          mt={4}
+          width="420px"
+          display="flex"
+          padding="8px"
+          justifyContent="center"
+          alignItems="center"
+          gap="8px"
+        >
+          <Input
+            type="file"
+            display="none"
+            id="file-upload"
+            onChange={(e) => {
+              const file = e.target.files[0];
+              if (file) {
+                console.log("File selected:", file.name);
+                // Handle file upload logic here
+              }
+            }}
+            accept=".pdf,.doc,.docx"
+          />
+          <Button
+            width="100%"
+            borderRadius="8px"
+            border="1px solid #2C2C2C"
+            background="#2C2C2C"
+            as="label"
+            htmlFor="file-upload"
+            colorScheme="gray"
+            variant="outline"
+            rightIcon={<Icon as={FaUpload} color="white" />}
+            cursor="pointer"
+            _hover={{
+              background: "#1E1E1E",
+              borderColor: "#1E1E1E",
+            }}
+          >
+            <Text
+              color="#F5F5F5"
+              fontSize="11px"
+              fontWeight={500}
+              lineHeight="16px"
+              letterSpacing="0.5px"
+            >
+              Upload file
+            </Text>
+          </Button>
+        </Box>
       </Flex>
     </div>
   );
