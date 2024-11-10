@@ -77,27 +77,6 @@ export default function Chat() {
         // Add mock AI response immediately
         const aiMessage = {
           text: aiResponse,
-          //       text: `# Strength of Case
-          // Based on similar cases, pursuing a rent reduction or rebate has a high likelihood of success if sufficient evidence of ongoing pest issues can be presented.
-
-          // ## Recommended Actions
-
-          // ### Gather More Evidence
-          // - Document future pest sightings with photos
-          // - Record videos of infestations
-          // - Keep a detailed log with specific dates and locations
-
-          // ### Consider Additional Complaints
-          // - Monitor for mold development
-          // - Document any structural issues
-          // - Report maintenance problems
-          // - Track response times from property management
-
-          // ## Legal Reference
-          // ### California Civil Code Section 1941.1
-          // - Reinforces tenant's right to habitable living environment
-          // - Specifically addresses pest infestations
-          // - Provides basis for rent reduction claims`,
           sender: "ai",
           timestamp: new Date().toISOString(),
           caseInfo: [
@@ -187,153 +166,161 @@ export default function Chat() {
                   borderRadius="full"
                   color="#1E1E1E"
                 >
-                  <Flex align="center">
-                    <Text
-                      color="#2C2C2C"
-                      fontSize="16px"
-                      fontStyle="normal"
-                      fontWeight={600}
-                      lineHeight="140%"
-                      mr={4}
-                    >
-                      Estimated Success Likelihood:
-                    </Text>
-                    <Box
-                      display="flex"
-                      width="80px"
-                      padding="8px"
-                      justifyContent="center"
-                      alignItems="center"
-                      gap="8px"
-                      background=" #14AE5C"
-                      borderRadius="8px"
-                    >
+                  {messages
+                    .filter((msg) => msg.sender === "ai")
+                    .indexOf(message) === 0 && (
+                    <Flex align="center">
                       <Text
-                        color="#F5F5F5"
-                        fontSize="12px"
-                        fontWeight={700}
-                        lineHeight="100%"
+                        color="#2C2C2C"
+                        fontSize="16px"
+                        fontStyle="normal"
+                        fontWeight={600}
+                        lineHeight="140%"
+                        mr={4}
                       >
-                        High
+                        Estimated Success Likelihood:
                       </Text>
-                    </Box>
-                  </Flex>
+                      <Box
+                        display="flex"
+                        width="80px"
+                        padding="8px"
+                        justifyContent="center"
+                        alignItems="center"
+                        gap="8px"
+                        background=" #14AE5C"
+                        borderRadius="8px"
+                      >
+                        <Text
+                          color="#F5F5F5"
+                          fontSize="12px"
+                          fontWeight={700}
+                          lineHeight="100%"
+                        >
+                          High
+                        </Text>
+                      </Box>
+                    </Flex>
+                  )}
                   <ReactMarkdown className="markdown-content">
                     {message.text}
                   </ReactMarkdown>
                 </Box>
               )}
-              {message.sender === "ai" && message.caseInfo && (
-                <Flex direction="column" mt={3} ml={4}>
-                  <Box mb="10px">
-                    <Text display="inline">78 Relevant Cases Found for </Text>
+              {message.sender === "ai" &&
+                message.caseInfo &&
+                messages
+                  .filter((msg) => msg.sender === "ai")
+                  .indexOf(message) === 0 && (
+                  <Flex direction="column" mt={3} ml={4}>
+                    <Box mb="10px">
+                      <Text display="inline">78 Relevant Cases Found for </Text>
+                      <Text
+                        display="inline-flex"
+                        padding="8px"
+                        justifyContent="center"
+                        alignItems="center"
+                        gap="8px"
+                        borderRadius="8px"
+                        background="#F5F5F5"
+                      >
+                        habitability issues related to pest infestation
+                      </Text>
+                    </Box>
                     <Text
-                      display="inline-flex"
-                      padding="8px"
-                      justifyContent="center"
-                      alignItems="center"
-                      gap="8px"
-                      borderRadius="8px"
-                      background="#F5F5F5"
+                      color="#1E1E1E"
+                      fontSize="12px"
+                      fontStyle="normal"
+                      fontWeight={500}
+                      lineHeight="16px"
+                      letterSpacing="0.5px"
+                      mb={3}
                     >
-                      habitability issues related to pest infestation
+                      Top 3 Relevant Cases Found:
                     </Text>
-                  </Box>
-                  <Text
-                    color="#1E1E1E"
-                    fontSize="12px"
-                    fontStyle="normal"
-                    fontWeight={500}
-                    lineHeight="16px"
-                    letterSpacing="0.5px"
-                    mb={3}
-                  >
-                    Top 3 Relevant Cases Found:
-                  </Text>
-                  {message.caseInfo.map((caseItem, idx) => (
-                    <Box
-                      key={idx}
-                      p={4}
-                      borderRadius="md"
-                      bg="#F5F5F5"
-                      maxW="90%"
-                      mb={idx < message.caseInfo.length - 1 ? 3 : 0}
-                    >
-                      <Box>{caseItem.caseNumber}</Box>
-                      <Box>
-                        <Text
-                          mt={2}
-                          color="#1E1E1E"
-                          fontSize="14px"
-                          fontStyle="normal"
-                          lineHeight="20px"
-                          letterSpacing="0.25px"
-                        >
-                          <Text as="span" fontWeight={700}>
-                            Summary:
-                          </Text>{" "}
-                          <Text as="span" fontWeight={400}>
-                            {caseItem.summary}
-                          </Text>
-                        </Text>
-                        <Text
-                          mt={2}
-                          color="#1E1E1E"
-                          fontSize="14px"
-                          fontStyle="normal"
-                          lineHeight="20px"
-                          letterSpacing="0.25px"
-                        >
-                          <Text as="span" fontWeight={700}>
-                            Outcome:
-                          </Text>{" "}
-                          <Text as="span" fontWeight={400}>
-                            {caseItem.outcome}
-                          </Text>
-                        </Text>
-                        <Text
-                          mt={2}
-                          color="#1E1E1E"
-                          fontSize="14px"
-                          fontStyle="normal"
-                          lineHeight="20px"
-                          letterSpacing="0.25px"
-                        >
-                          <Text as="span" fontWeight={700}>
-                            Legal Basis:
-                          </Text>{" "}
-                          <Text as="span" fontWeight={400}>
-                            {caseItem.legalBasis}
-                          </Text>
-                        </Text>
-                        <Box
-                          display="flex"
-                          padding="8px"
-                          justifyContent="center"
-                          alignItems="center"
-                          gap="8px"
-                          borderRadius="8px"
-                          border="1px solid #767676"
-                          background="#E3E3E3"
-                          width="123px"
-                          mt="12px"
-                        >
+                    {message.caseInfo.map((caseItem, idx) => (
+                      <Box
+                        key={idx}
+                        p={4}
+                        borderRadius="md"
+                        bg="#F5F5F5"
+                        maxW="90%"
+                        mb={idx < message.caseInfo.length - 1 ? 3 : 0}
+                      >
+                        <Box>{caseItem.caseNumber}</Box>
+                        <Box>
                           <Text
+                            mt={2}
                             color="#1E1E1E"
-                            fontSize="11px"
+                            fontSize="14px"
                             fontStyle="normal"
-                            fontWeight={500}
-                            lineHeight="16px"
-                            letterSpacing="0.5px"
+                            lineHeight="20px"
+                            letterSpacing="0.25px"
                           >
-                            View Full Summary
+                            <Text as="span" fontWeight={700}>
+                              Summary:
+                            </Text>{" "}
+                            <Text as="span" fontWeight={400}>
+                              {caseItem.summary}
+                            </Text>
                           </Text>
+                          <Text
+                            mt={2}
+                            color="#1E1E1E"
+                            fontSize="14px"
+                            fontStyle="normal"
+                            lineHeight="20px"
+                            letterSpacing="0.25px"
+                          >
+                            <Text as="span" fontWeight={700}>
+                              Outcome:
+                            </Text>{" "}
+                            <Text as="span" fontWeight={400}>
+                              {caseItem.outcome}
+                            </Text>
+                          </Text>
+                          <Text
+                            mt={2}
+                            color="#1E1E1E"
+                            fontSize="14px"
+                            fontStyle="normal"
+                            lineHeight="20px"
+                            letterSpacing="0.25px"
+                          >
+                            <Text as="span" fontWeight={700}>
+                              Legal Basis:
+                            </Text>{" "}
+                            <Text as="span" fontWeight={400}>
+                              {caseItem.legalBasis}
+                            </Text>
+                          </Text>
+                          <Box
+                            display="flex"
+                            padding="8px"
+                            justifyContent="center"
+                            alignItems="center"
+                            gap="8px"
+                            borderRadius="8px"
+                            border="1px solid #767676"
+                            background="#E3E3E3"
+                            width="123px"
+                            mt="12px"
+                          >
+                            <Text
+                              color="#1E1E1E"
+                              fontSize="11px"
+                              fontStyle="normal"
+                              fontWeight={500}
+                              lineHeight="16px"
+                              letterSpacing="0.5px"
+                            >
+                              View Full Summary
+                            </Text>
+                          </Box>
                         </Box>
                       </Box>
-                    </Box>
-                  ))}
-                </Flex>
-              )}
+                    ))}
+                  </Flex>
+                )}
             </Flex>
           ))}
         </Box>
