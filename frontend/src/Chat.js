@@ -14,16 +14,23 @@ import {
   Grid,
 } from "@chakra-ui/react";
 import ReactMarkdown from "react-markdown";
-import { SearchIcon } from "@chakra-ui/icons";
+import { SearchIcon, ChevronDownIcon, ChevronUpIcon } from "@chakra-ui/icons";
 import { FaRobot } from "react-icons/fa";
 
 export default function Chat() {
   const [messages, setMessages] = useState([]);
   const [inputMessage, setInputMessage] = useState("");
+  const [expandedCases, setExpandedCases] = useState({}); // Add this state
 
   // Add this to get the location state
   const location = useLocation();
   const isInitialMount = useRef(true);
+  const toggleCase = (caseId) => {
+    setExpandedCases((prev) => ({
+      ...prev,
+      [caseId]: !prev[caseId],
+    }));
+  };
 
   useEffect(() => {
     if (isInitialMount.current) {
@@ -313,105 +320,153 @@ export default function Chat() {
                   .indexOf(message) === 0 && (
                   <Flex direction="column" mt={3} ml={4}>
                     <Text
-                      color="#1E1E1E"
-                      fontSize="12px"
+                      color="#2C2C2C"
+                      fontSize="16px"
                       fontStyle="normal"
-                      fontWeight={500}
-                      lineHeight="16px"
-                      letterSpacing="0.5px"
+                      fontWeight={700}
+                      lineHeight="24px"
+                      letterSpacing="0.15px"
                       mb={3}
                     >
-                      Top 3 Relevant Cases Found:
+                      Relevant Case Precedents:
                     </Text>
                     {message.caseInfo.map((caseItem, idx) => (
-                      <Box
-                        key={idx}
-                        p={4}
-                        borderRadius="md"
-                        bg="#F5F5F5"
-                        maxW="90%"
-                        mb={idx < message.caseInfo.length - 1 ? 3 : 0}
-                      >
-                        <Box>{caseItem.caseNumber}</Box>
-                        <Box>
+                      <Flex direction="column" maxWidth="90%">
+                        {/* <Box mb="5px">
                           <Text
-                            mt={2}
                             color="#1E1E1E"
+                            onClick={() => toggleCase(idx)}
                             fontSize="14px"
                             fontStyle="normal"
+                            fontWeight={400}
                             lineHeight="20px"
                             letterSpacing="0.25px"
+                            textDecoration="underline"
+                            textDecorationStyle="solid"
+                            textDecorationSkipInk="none"
                           >
-                            <Text as="span" fontWeight={700}>
-                              Summary:
-                            </Text>{" "}
-                            <Text as="span" fontWeight={400}>
-                              {caseItem.summary}
-                            </Text>
+                            {caseItem.caseNumber}
                           </Text>
+                          {expandedCases[idx] ? (
+                            <ChevronUpIcon />
+                          ) : (
+                            <ChevronDownIcon />
+                          )}
+                        </Box> */}
+                        <Flex align="center">
+                          {expandedCases[idx] ? (
+                            <ChevronUpIcon mr={2} />
+                          ) : (
+                            <ChevronDownIcon mr={2} />
+                          )}
                           <Text
-                            mt={2}
                             color="#1E1E1E"
+                            onClick={() => toggleCase(idx)}
                             fontSize="14px"
                             fontStyle="normal"
+                            fontWeight={400}
                             lineHeight="20px"
                             letterSpacing="0.25px"
+                            textDecoration="underline"
+                            textDecorationStyle="solid"
+                            textDecorationSkipInk="none"
                           >
-                            <Text as="span" fontWeight={700}>
-                              Outcome:
-                            </Text>{" "}
-                            <Text as="span" fontWeight={400}>
-                              {caseItem.outcome}
-                            </Text>
+                            {caseItem.caseNumber}
                           </Text>
-                          <Text
-                            mt={2}
-                            color="#1E1E1E"
-                            fontSize="14px"
-                            fontStyle="normal"
-                            lineHeight="20px"
-                            letterSpacing="0.25px"
-                          >
-                            <Text as="span" fontWeight={700}>
-                              Legal Basis:
-                            </Text>{" "}
-                            <Text as="span" fontWeight={400}>
-                              {caseItem.legalBasis}
-                            </Text>
-                          </Text>
+                        </Flex>
+                        {expandedCases[idx] && (
                           <Box
-                            as="a" // Change Box to be an anchor
-                            href={caseItem.pdfLink}
-                            onClick={() => console.log("PDF Link:", caseItem)} // Add this to debug
-                            // href="2023-01-23 Rent Boards Finding and Decisions Appeal Case 2021056 - 2070 Glen Way Apartment F.pdf"
-                            target="_blank"
-                            display="flex"
-                            padding="8px"
-                            justifyContent="center"
-                            alignItems="center"
-                            gap="8px"
-                            borderRadius="8px"
-                            border="1px solid #767676"
-                            background="#E3E3E3"
-                            width="123px"
-                            mt="12px"
-                            cursor="pointer" // Add cursor pointer
-                            textDecoration="none" // Remove default link styling
-                            _hover={{ background: "#D1D1D1" }} // Optional: add hover effect
+                            key={idx}
+                            p="16px"
+                            borderRadius="md"
+                            bg="#F5F5F5"
+                            maxW="90%"
+                            mb={idx < message.caseInfo.length - 1 ? 3 : 0}
+                            mt="10px"
+                            ml="20px"
                           >
-                            <Text
-                              color="#1E1E1E"
-                              fontSize="11px"
-                              fontStyle="normal"
-                              fontWeight={500}
-                              lineHeight="16px"
-                              letterSpacing="0.5px"
-                            >
-                              View Full Case
-                            </Text>
+                            <Box>
+                              <Text
+                                color="#1E1E1E"
+                                fontSize="14px"
+                                fontStyle="normal"
+                                lineHeight="20px"
+                                letterSpacing="0.25px"
+                              >
+                                <Text as="span" fontWeight={700}>
+                                  Summary:
+                                </Text>{" "}
+                                <Text as="span" fontWeight={400}>
+                                  {caseItem.summary}
+                                </Text>
+                              </Text>
+                              <Text
+                                mt={2}
+                                color="#1E1E1E"
+                                fontSize="14px"
+                                fontStyle="normal"
+                                lineHeight="20px"
+                                letterSpacing="0.25px"
+                              >
+                                <Text as="span" fontWeight={700}>
+                                  Outcome:
+                                </Text>{" "}
+                                <Text as="span" fontWeight={400}>
+                                  {caseItem.outcome}
+                                </Text>
+                              </Text>
+                              <Text
+                                mt={2}
+                                color="#1E1E1E"
+                                fontSize="14px"
+                                fontStyle="normal"
+                                lineHeight="20px"
+                                letterSpacing="0.25px"
+                              >
+                                <Text as="span" fontWeight={700}>
+                                  Legal Basis:
+                                </Text>{" "}
+                                <Text as="span" fontWeight={400}>
+                                  {caseItem.legalBasis}
+                                </Text>
+                              </Text>
+                              <Box
+                                as="a" // Change Box to be an anchor
+                                href={caseItem.pdfLink}
+                                onClick={() =>
+                                  console.log("PDF Link:", caseItem)
+                                } // Add this to debug
+                                // href="2023-01-23 Rent Boards Finding and Decisions Appeal Case 2021056 - 2070 Glen Way Apartment F.pdf"
+                                target="_blank"
+                                display="flex"
+                                padding="8px"
+                                justifyContent="center"
+                                alignItems="center"
+                                gap="8px"
+                                borderRadius="8px"
+                                border="1px solid #767676"
+                                background="#E3E3E3"
+                                width="123px"
+                                mt="12px"
+                                cursor="pointer" // Add cursor pointer
+                                textDecoration="none" // Remove default link styling
+                                _hover={{ background: "#D1D1D1" }} // Optional: add hover effect
+                              >
+                                <Text
+                                  color="#1E1E1E"
+                                  fontSize="11px"
+                                  fontStyle="normal"
+                                  fontWeight={500}
+                                  lineHeight="16px"
+                                  letterSpacing="0.5px"
+                                >
+                                  View Full Case
+                                </Text>
+                              </Box>
+                            </Box>
                           </Box>
-                        </Box>
-                      </Box>
+                        )}
+                      </Flex>
                     ))}
                   </Flex>
                 )}
