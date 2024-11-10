@@ -16,6 +16,7 @@ CORS(app)
 def initialize_query_engine():
     llm = OpenAI(temperature=0, model="gpt-4")
     PERSIST_DIR = "../Data/storage"
+    file_map = {}
 
     if not os.path.exists(PERSIST_DIR):
         documents = SimpleDirectoryReader(
