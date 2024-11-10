@@ -15,14 +15,6 @@ CORS(app)
 
 def initialize_document_index(index_name, docs):
     llm = OpenAI(temperature=0, model="gpt-4")
-
-#     llm = OpenAI(api_key="",
-#              temperature=0.1, model="gpt-4-0125-preview")
-# embed_model = OpenAIEmbedding(model="text-embedding-3-large")
-# service_context = ServiceContext.from_defaults(
-#     llm=llm, embed_model=embed_model)
-
-
     PERSIST_DIR = "../Data/" + index_name
     file_map = {}
 
@@ -55,8 +47,9 @@ def initialize_query_engine():
     if not os.path.exists(PERSIST_DIR):
         documents = SimpleDirectoryReader(
             "/Users/swimmingcircle/Code/cls-housing-hack-for-impact/Data/output").load_data()
+        ordinances = SimpleDirectoryReader('../data/output/ordinances').load_data()
         index = VectorStoreIndex.from_documents(
-            documents,
+            documents + ordinances,
             llm=llm,
         )
         index.storage_context.persist(persist_dir=PERSIST_DIR)
