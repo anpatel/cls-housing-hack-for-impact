@@ -65,7 +65,7 @@ CORS(app)
 
 def initialize_query_engine():
     llm = OpenAI(temperature=0, model="gpt-4")
-    PERSIST_DIR = "./Data/storage"
+    PERSIST_DIR = "../Data/storage"
 
     if not os.path.exists(PERSIST_DIR):
         documents = SimpleDirectoryReader(
@@ -78,7 +78,7 @@ def initialize_query_engine():
     else:
         storage_context = StorageContext.from_defaults(persist_dir=PERSIST_DIR)
         index = load_index_from_storage(storage_context)
-        index.llm = llm
+    index.llm = llm
 
     return index.as_query_engine(
         dense_similarity_top_k=3,
