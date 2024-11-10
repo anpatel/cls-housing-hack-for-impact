@@ -43,7 +43,7 @@ export default function Home() {
             <SearchIcon color="gray.400" />
           </InputLeftElement>
           <Input
-            placeholder="Search case studies..."
+            placeholder="habitability issues related to pest infestation"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             size="lg"
