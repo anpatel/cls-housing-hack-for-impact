@@ -140,9 +140,7 @@ def chat_query():  # renamed function to avoid duplicate
     print('response', response)
 
     return jsonify({
-        "response": {
-            "answer": response.response
-        }
+        "answer": response.response
     })
 
 
