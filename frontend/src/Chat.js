@@ -82,6 +82,8 @@ export default function Chat() {
         console.log("Query response:", data);
         const aiResponse = data?.response;
         const aiLegalArguement = aiResponse.legal_argument;
+        const aiLegalBasis = aiResponse.legal_basis;
+        const aiResponsableOutcomes = aiResponse.reasonable_outcomes;
         const caseType = aiResponse.case_type;
 
         // const aiPdfLinks = aiResponse.files.map((file) => file.pdf_file_path);
@@ -96,6 +98,8 @@ export default function Chat() {
         const aiMessage = {
           caseType: caseType,
           legalArguement: aiLegalArguement,
+          legalBasis: aiLegalBasis,
+          responsableOutcomes: aiResponsableOutcomes,
           sender: "ai",
           timestamp: new Date().toISOString(),
           caseInfo: [
@@ -222,6 +226,27 @@ export default function Chat() {
                     mt="12px"
                     mb="8px"
                   >
+                    Legal Basis for Tenant's Case:
+                  </Text>
+                  <Text
+                    color="#1E1E1E"
+                    fontSize="14px"
+                    fontStyle="normal"
+                    fontWeight={400}
+                    lineHeight="20px"
+                    letterSpacing="0.25px"
+                  >
+                    {message.legalBasis}
+                  </Text>
+                  <Text
+                    color="#2C2C2C"
+                    fontSize="16px"
+                    fontWeight={500}
+                    lineHeight="24px"
+                    letterSpacing="0.15px"
+                    mt="12px"
+                    mb="8px"
+                  >
                     Legal Argument:
                   </Text>
                   <Text
@@ -233,6 +258,27 @@ export default function Chat() {
                     letterSpacing="0.25px"
                   >
                     {message.legalArguement}
+                  </Text>
+                  <Text
+                    color="#2C2C2C"
+                    fontSize="16px"
+                    fontWeight={500}
+                    lineHeight="24px"
+                    letterSpacing="0.15px"
+                    mt="12px"
+                    mb="8px"
+                  >
+                    Reasonable Outcomes:
+                  </Text>
+                  <Text
+                    color="#1E1E1E"
+                    fontSize="14px"
+                    fontStyle="normal"
+                    fontWeight={400}
+                    lineHeight="20px"
+                    letterSpacing="0.25px"
+                  >
+                    {message.responsableOutcomes}
                   </Text>
                 </Box>
               )}
