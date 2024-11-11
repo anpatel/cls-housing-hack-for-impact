@@ -101,7 +101,7 @@ def query_documents():
         data['question']
 
     response = query_engine.query(legal_argument)
-    topic_response = 'please give me a title for a document for a client with client information: ' + data['question']
+    topic_response = 'to help me, as an attorney, get a quick glance at what the case is about, please tell me what the primary issue is in this case, such as "mold" or "water leakage" or "broken heater." it should be no longer than a phrase or two.: ' + data['question']
     files = get_file_names_and_paths_from_response(response)
 
     response_dict = {}
