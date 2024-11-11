@@ -48,12 +48,12 @@ export default function Chat() {
         setMessages([initialMessage]);
 
         // Trigger AI response for initial query
-        handleSendMessage(initialQuery);
+        handleInitialMessage(initialQuery);
       }
     }
   }, []);
 
-  const handleSendMessage = async (messageText = inputMessage) => {
+  const handleInitialMessage = async (messageText = inputMessage) => {
     console.log("we call handleSendMessage");
     if (!messageText.trim()) return;
 
@@ -94,7 +94,6 @@ export default function Chat() {
         ];
         console.log("aiPdfLinks", aiPdfLinks);
 
-        // Add mock AI response immediately
         const aiMessage = {
           caseType: caseType,
           legalArguement: aiLegalArguement,
@@ -145,6 +144,53 @@ export default function Chat() {
       });
   };
 
+  const handleChatMessage = async (messageText) => {
+    fetch(`${process.env.REACT_APP_BACKEND_DOMAIN}/api/chat`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        question: messageText,
+        info: "this person is happy",
+        // Include any additional data required by /api/chat
+      }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log("Chat response:", data);
+        const aiAnswer = data?.answer;
+
+        // Process the response according to /api/chat's response structure
+        const aiMessage = {
+          text: aiAnswer,
+          sender: "ai",
+          timestamp: new Date().toISOString(),
+        };
+
+        setMessages((prevMessages) => [...prevMessages, aiMessage]);
+      })
+      .catch((error) => {
+        console.error("Error in chat:", error);
+      });
+  };
+  const handleSendMessage = async () => {
+    const messageText = inputMessage;
+    if (!messageText.trim()) return;
+
+    const userMessage = {
+      text: messageText,
+      sender: "user",
+      timestamp: new Date().toISOString(),
+    };
+
+    setMessages((prevMessages) => [...prevMessages, userMessage]);
+    setInputMessage("");
+
+    // Use handleChatMessage for subsequent messages
+    handleChatMessage(messageText);
+  };
+
   return (
     <Container maxW="800px" h="100vh" py={8}>
       <VStack h="full" spacing={4}>
@@ -187,101 +233,108 @@ export default function Chat() {
                   </Text>
                 </Box>
               )}
-              {message.sender === "ai" && (
-                <Box
-                  maxW="90%"
-                  mt="10px"
-                  px={4}
-                  py={2}
-                  borderRadius="full"
-                  color="#1E1E1E"
-                >
-                  <Text
-                    color="#2C2C2C"
-                    fontSize="16px"
-                    fontWeight={500}
-                    lineHeight="24px"
-                    letterSpacing="0.15px"
-                    mt="12px"
-                    mb="8px"
-                  >
-                    Issue(s):
-                  </Text>
-                  <Text
+              {message.sender === "ai" &&
+                messages
+                  .filter((msg) => msg.sender === "ai")
+                  .indexOf(message) === 0 && (
+                  <Box
+                    maxW="90%"
+                    mt="10px"
+                    px={4}
+                    py={2}
+                    borderRadius="full"
                     color="#1E1E1E"
-                    fontSize="14px"
-                    fontStyle="normal"
-                    fontWeight={400}
-                    lineHeight="20px"
-                    letterSpacing="0.25px"
                   >
-                    {message.caseType}
-                  </Text>
-                  <Text
-                    color="#2C2C2C"
-                    fontSize="16px"
-                    fontWeight={500}
-                    lineHeight="24px"
-                    letterSpacing="0.15px"
-                    mt="12px"
-                    mb="8px"
-                  >
-                    Legal Basis for Tenant's Case:
-                  </Text>
-                  <Text
-                    color="#1E1E1E"
-                    fontSize="14px"
-                    fontStyle="normal"
-                    fontWeight={400}
-                    lineHeight="20px"
-                    letterSpacing="0.25px"
-                  >
-                    {message.legalBasis}
-                  </Text>
-                  <Text
-                    color="#2C2C2C"
-                    fontSize="16px"
-                    fontWeight={500}
-                    lineHeight="24px"
-                    letterSpacing="0.15px"
-                    mt="12px"
-                    mb="8px"
-                  >
-                    Legal Argument:
-                  </Text>
-                  <Text
-                    color="#1E1E1E"
-                    fontSize="14px"
-                    fontStyle="normal"
-                    fontWeight={400}
-                    lineHeight="20px"
-                    letterSpacing="0.25px"
-                  >
-                    {message.legalArguement}
-                  </Text>
-                  <Text
-                    color="#2C2C2C"
-                    fontSize="16px"
-                    fontWeight={500}
-                    lineHeight="24px"
-                    letterSpacing="0.15px"
-                    mt="12px"
-                    mb="8px"
-                  >
-                    Reasonable Outcomes:
-                  </Text>
-                  <Text
-                    color="#1E1E1E"
-                    fontSize="14px"
-                    fontStyle="normal"
-                    fontWeight={400}
-                    lineHeight="20px"
-                    letterSpacing="0.25px"
-                  >
-                    {message.responsableOutcomes}
-                  </Text>
-                </Box>
-              )}
+                    <Text
+                      color="#2C2C2C"
+                      fontSize="16px"
+                      fontWeight={500}
+                      lineHeight="24px"
+                      letterSpacing="0.15px"
+                      mt="12px"
+                      mb="8px"
+                    >
+                      Issue(s):
+                    </Text>
+                    <Text
+                      color="#1E1E1E"
+                      fontSize="14px"
+                      fontStyle="normal"
+                      fontWeight={400}
+                      lineHeight="20px"
+                      letterSpacing="0.25px"
+                    >
+                      {message.caseType}
+                    </Text>
+                    <Text
+                      color="#2C2C2C"
+                      fontSize="16px"
+                      fontWeight={500}
+                      lineHeight="24px"
+                      letterSpacing="0.15px"
+                      mt="12px"
+                      mb="8px"
+                    >
+                      Legal Basis for Tenant's Case:
+                    </Text>
+                    <Text
+                      color="#1E1E1E"
+                      fontSize="14px"
+                      fontStyle="normal"
+                      fontWeight={400}
+                      lineHeight="20px"
+                      letterSpacing="0.25px"
+                    >
+                      {message.legalBasis}
+                    </Text>
+                    <Text
+                      color="#2C2C2C"
+                      fontSize="16px"
+                      fontWeight={500}
+                      lineHeight="24px"
+                      letterSpacing="0.15px"
+                      mt="12px"
+                      mb="8px"
+                    >
+                      Legal Argument:
+                    </Text>
+                    <Text
+                      color="#1E1E1E"
+                      fontSize="14px"
+                      fontStyle="normal"
+                      fontWeight={400}
+                      lineHeight="20px"
+                      letterSpacing="0.25px"
+                    >
+                      {message.legalArguement}
+                    </Text>
+                    <Text
+                      color="#2C2C2C"
+                      fontSize="16px"
+                      fontWeight={500}
+                      lineHeight="24px"
+                      letterSpacing="0.15px"
+                      mt="12px"
+                      mb="8px"
+                    >
+                      Reasonable Outcomes:
+                    </Text>
+                    <Text
+                      color="#1E1E1E"
+                      fontSize="14px"
+                      fontStyle="normal"
+                      fontWeight={400}
+                      lineHeight="20px"
+                      letterSpacing="0.25px"
+                    >
+                      {message.responsableOutcomes}
+                    </Text>
+                  </Box>
+                )}
+              {message.sender === "ai" &&
+                messages
+                  .filter((msg) => msg.sender === "ai")
+                  .indexOf(message) !== 0 && <Text>{message.text}</Text>}
 
               {message.sender === "ai" &&
                 message.caseInfo &&
