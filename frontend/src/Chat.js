@@ -84,7 +84,7 @@ export default function Chat() {
         const aiLegalArguement = aiResponse.legal_argument;
         const aiLegalBasis = aiResponse.legal_basis;
         const aiResponsableOutcomes = aiResponse.reasonable_outcomes;
-        const caseType = aiResponse.case_type;
+        const caseType = aiResponse.topic;
 
         // const aiPdfLinks = aiResponse.files.map((file) => file.pdf_file_path);
         const aiPdfLinks = [

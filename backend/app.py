@@ -101,7 +101,8 @@ def query_documents():
         data['question']
 
     response = query_engine.query(legal_argument)
-    topic_response = 'please give me a title for a document for a client with client information: ' + data['question']
+    topic_response = 'please give me a title for a document for a client with client information: ' + \
+        data['question']
     files = get_file_names_and_paths_from_response(response)
 
     response_dict = {}
@@ -113,8 +114,11 @@ def query_documents():
     response_dict['issue_type'] = other_info['issue_type']
     response_dict['reasonable_outcomes'] = other_info['reasonable_outcomes']
     response_dict['files'] = files
-    response_dict['topic'] = initialize_document_index('argument_result_search', files).query(topic_response).response
+    response_dict['topic'] = initialize_document_index(
+        'argument_result_search', files).query(topic_response).response
     response_dict['case_type'] = 'Habitability Issue -- Pest Infestation and Mold'
+
+    print('response_dict', response_dict)
 
     # file_output = query_specific_documents(files)
     # response_dict['file_output'] = file_output
