@@ -92,6 +92,7 @@ def get_file_names_and_paths_from_response(response):
 def query_documents():
     query_engine = initialize_query_engine()
     data = request.get_json()
+
     if not data or 'question' not in data:
         return jsonify({"error": "No question provided"}), 400
 
@@ -100,6 +101,7 @@ def query_documents():
         data['question']
 
     response = query_engine.query(legal_argument)
+    topic_response = 'please give me a title for a document for a client with client information: ' + data['question']
     files = get_file_names_and_paths_from_response(response)
 
     response_dict = {}
@@ -111,6 +113,7 @@ def query_documents():
     response_dict['issue_type'] = other_info['issue_type']
     response_dict['reasonable_outcomes'] = other_info['reasonable_outcomes']
     response_dict['files'] = files
+    response_dict['topic'] = initialize_document_index('argument_result_search', files).query(topic_response).response
     response_dict['case_type'] = 'Habitability Issue -- Pest Infestation and Mold'
 
     # file_output = query_specific_documents(files)
